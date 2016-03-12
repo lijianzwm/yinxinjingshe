@@ -1,10 +1,10 @@
 CREATE TABLE `xzx_news` (
 `id` int( 10 ) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-`title` varchar( 100 ) NOT NULL COMMENT '±êÌâ',
-`author` varchar( 20 ) NOT NULL COMMENT '×÷Õß',
-`img` varchar( 500 ) NOT NULL COMMENT '±êÌâÍ¼Æ¬Â·¾¶',
+`title` varchar( 100 ) NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+`author` varchar( 20 ) NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½',
+`img_name` varchar( 500 ) NOT NULL COMMENT 'ï¿½ï¿½ï¿½ï¿½Í¼Æ¬Â·ï¿½ï¿½',
 `abstract` char( 200 ) COMMENT 'ÕªÒª',
-`content` text COMMENT '¶¯Ì¬ÄÚÈÝ',
-`commit_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '·¢²¼Ê±¼ä',
+`content` text COMMENT 'ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½',
+`commit_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½',
 PRIMARY KEY ( `id` )
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
