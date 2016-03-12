@@ -13,7 +13,7 @@ namespace Common\Service;
  * @package Common\Service
  * 持久化服务
  */
-class PersistenceService{
+class ImageService{
 
     public static function persistence($tmpData, $realPath ){
         if (copy($tmpData, $realPath)) {
@@ -22,6 +22,14 @@ class PersistenceService{
             }else{
                 return false;
             }
+        }else{
+            return false;
+        }
+    }
+
+    public static function delete( $img ){
+        if (unlink($img)) {
+            return true;
         }else{
             return false;
         }
