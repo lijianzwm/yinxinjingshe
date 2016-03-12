@@ -1,0 +1,10 @@
+CREATE TABLE `xzx_news` (
+`id` int( 10 ) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+`title` varchar( 100 ) NOT NULL COMMENT '标题',
+`author` varchar( 20 ) NOT NULL COMMENT '作者',
+`img` varchar( 500 ) NOT NULL COMMENT '标题图片路径',
+`abstract` char( 200 ) COMMENT '摘要',
+`content` text COMMENT '动态内容',
+`commit_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
+PRIMARY KEY ( `id` )
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;

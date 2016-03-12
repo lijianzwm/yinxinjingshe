@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>最新动态列表</title>
+</head>
+<script type="text/javascript">
+
+    function deleteNews(newsId, newsTitle){
+        if( confirm("确定要删除以下内容？\n"+newsTitle)){
+            if( confirm("一旦删除便无法恢复，真的确定吗？")){
+                var aj = $.ajax( {
+                    url:"{:U('News/deleteNews')}",
+                    data:{
+                        newsId : newsId
+                    },
+                    type:'post',
+                    cache:false,
+                    dataType:'json',
+                    success:function(data) {
+                        if(data.msg == true ){
+                            alert("删除成功！");
+                            window.location.reload();
+                        }else{
+                            alert("删除失败！");
+                        }
+                    },
+                    error : function() {
+                        alert("异常！");
+                    }
+                });
+            }
+        }
+    }
+</script>
+<body>
+<table>
+    <tr><td><a href="{:U('News/editNews')}">添加动态</a></td></tr>
+    <tr>
+        <td>标题</td>
+        <td>作者</td>
+        <td>操作</td>
+    </tr>
+    <foreach name="newsList" item="v">
+        <tr>
+            <td>{$v.title}</td>
+            <td>{$v.author}</td>
+            <td><a href="{:U('News/editNews', array('id'=>$v['id']))}">修改</a>&nbsp;
+                <a href="#" onclick="deleteNews('{$v.id}','{$v.title}')" >删除</a>
+                <!--<td><a href="#" onclick="deleteNews($v['id'])" >置顶</a></td>-->
+            </td>
+        </tr>
+    </foreach>
+    <tr><td>{$page}</td></tr>
+</table>
+
+</body>
+</html>

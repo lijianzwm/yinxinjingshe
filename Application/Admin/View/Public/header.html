@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td colspan="3">
+            欢迎您，{$Think.session.realname}
+            <a href="{:U('Login/modifyPassword')}">修改密码</a>
+            <a href="{:U('Login/logout')}">退出登录</a>
+        </td>
+    </tr>
+    <tr>
+        <td><a href="{:U('News/newsList')}">动态管理</a></td>
+        <td><a href="{:U('')}">文集管理</a></td>
+        <td><a href="{:U('')}">影音管理</a></td>
+    </tr>
+</table>
+</body>
+</html>

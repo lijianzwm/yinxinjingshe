@@ -1,0 +1,8 @@
+#忽略数据库配置文件
+/Application/Common/Conf/config.php
+
+#忽略Runtime文件
+/Application/Runtime/*
+
+#忽略shearphoto上传的文件
+/Public/Shearphoto/shearphoto_common/file/shearphoto_file/*
