@@ -7,6 +7,7 @@
  */
 
 namespace Common\Service;
+use Think\Storage\Driver;
 
 /**
  * Class PersistenceService
@@ -16,12 +17,16 @@ namespace Common\Service;
 class ImageService{
 
     public static function persistence($tmpData, $realPath ){
-        if (copy($tmpData, $realPath)) {
-            if( unlink($tmpData) ){
-                return true;
-            }else{
-                return false;
-            }
+        $tmpData = U("yinxinjingshe/Public/Shearphoto/shearphoto_common/file/shearphoto_file/newsphoto_56e3fdd367c82_736_0.jpg");
+        $realPath = U("Upload/Image/aaeb7ef544902a24d9141845c76259c9.jpg");
+
+        dump($tmpData);
+        dump($realPath);
+        dump(copy($tmpData, $realPath));
+        dump(unlink($tmpData));
+        die();
+        if( rename($tmpData,$realPath ) ){
+            return true;
         }else{
             return false;
         }

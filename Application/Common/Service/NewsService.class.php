@@ -14,7 +14,7 @@ class NewsService{
         return M("news")->order("commit_time desc")->page($page,$limit)->select();
     }
 
-    public function getNews( $id ){
+    public static function getNews( $id ){
         return M("news")->where("id='$id'")->find();
     }
 

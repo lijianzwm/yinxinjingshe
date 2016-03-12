@@ -24,6 +24,7 @@
         function hideShearphoto(){
             document.getElementById("shearphotoMain").style = "display:none";
             document.getElementById("news_info").style = "display:block";
+            document.getElementById("imgView").style = "display:block";
         }
     </script>
 
@@ -31,23 +32,27 @@
 </head>
 
 <body >
-<form action="{:U('News/addNewsHandler')}" method="post">
+<form action="{:U('News/editNewsHandler')}" method="post">
     <div id="news_info">
         <div align="center">
-            标题：<input type="text" name="title"/>
+            标题：<input type="text" name="title" value="{$news.title}"/>
+        </div>
+        <div>
+            newsId:<input type="text" name="id" value="{$news.id}"/>
         </div>
         <div align="center">
             作者：{$Think.session.realname}
             <input type="hidden" name="author" value="{$Think.session.realname}"/>
         </div>
         <div align="center">
-            摘要：<input type="text" name="abstract"/>
+            摘要：<input type="text" name="abstract" value="{$news.abstract}"/>
         </div>
         <div align="center">
             <input type="button" value="上传图片" onclick="showShearphoto()"><br>
-            <input type="hidden" id="imgUrl" name="img" value="{$imgUrl}"/>
-            <input type="hidden" id="imgName" value="{$news.imgName}">
-            <img src="__PUBLIC__/Image/no_image.png" id="imgView">
+            <input type="hidden" id="imgTmpPath" name="imgTmpPath" value="{$imgTmpPath}"/><!--图片缓存路径-->
+            <input type="hidden" id="imgName" name="imgName" value="{$news.img_name}"><!--图片名称，从后台接过来的-->
+            <input type="hidden" id="imgTmpFile" name="imgTmpFile"/><!--缓存图片文件（路径+文件名）用来向后台传数据 -->
+            <img src="{$imgPath}{$news.img_name}" id="imgView"/><!--图片预览，未上传图片时显示大叉子-->
         </div>
 
         <div align="center">
