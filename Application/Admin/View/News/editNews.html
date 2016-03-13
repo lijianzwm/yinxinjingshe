@@ -53,11 +53,9 @@
         <div class="news-title">
             标&nbsp;&nbsp;&nbsp;&nbsp;题：
             <input type="text" name="title" value="{$news.title}" />
+            <input type="hidden" name="id" value="{$news.id}" />
         </div>
-        <div class="news-title">
-            标题Id&nbsp;：
-            <input type="text" name="id" value="{$news.id}" />
-        </div>
+
         <div class="news-title">
             作&nbsp;&nbsp;&nbsp;&nbsp;者：{$Think.session.realname}
             <input type="hidden" name="author" value="{$Think.session.realname}" />
