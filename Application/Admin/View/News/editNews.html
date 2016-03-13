@@ -27,8 +27,9 @@
     <meta charset=utf-8 />
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=8,9,10">
-    <title>ShearPhoto2.3正式版_支持HTML5头像截取工具_JS截图_切图插件_数码照片压缩截图插件_商品图片编辑_在线拍照截图</title>
+    <title>编辑动态</title>
     <link href="__PUBLIC__/Shearphoto/shearphoto_common/css/ShearPhoto.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin_index.css">
     <!--CSS文件，有点废话-->
     <script type="text/javascript" src="__PUBLIC__/Shearphoto/shearphoto_common/js/ShearPhoto.js"></script>
     <!--ShearPhoto的核心文件 截取，拖拽，HTML5切图，数据交互等都是由这个文件处理，全部由明哥先生汗水交织而成-->
@@ -49,40 +50,55 @@
 <body >
 <form action="{:U('News/editNewsHandler')}" method="post">
     <div id="news_info">
-        <div align="center">
-            标题：<input type="text" name="title" value="{$news.title}"/>
+        <div class="news-title">
+            标&nbsp;&nbsp;&nbsp;&nbsp;题：
+            <input type="text" name="title" value="{$news.title}" />
         </div>
-        <div>
-            newsId:<input type="text" name="id" value="{$news.id}"/>
+        <div class="news-title">
+            标题Id&nbsp;：
+            <input type="text" name="id" value="{$news.id}" />
         </div>
-        <div align="center">
-            作者：{$Think.session.realname}
-            <input type="hidden" name="author" value="{$Think.session.realname}"/>
+        <div class="news-title">
+            作&nbsp;&nbsp;&nbsp;&nbsp;者：{$Think.session.realname}
+            <input type="hidden" name="author" value="{$Think.session.realname}" />
         </div>
-        <div align="center">
-            摘要：<input type="text" name="abstract" value="{$news.abstract}"/>
-        </div>
-        <div align="center">
-            <input type="button" value="上传图片" onclick="showShearphoto()"><br>
-            <input type="hidden" id="imgTmpPath" name="imgTmpPath" value="{$imgTmpPath}"/><!--图片缓存路径-->
-            <input type="hidden" id="imgName" name="imgName" value="{$news.img_name}"><!--图片名称，从后台接过来的-->
-            <input type="hidden" id="imgTmpFile" name="imgTmpFile"/><!--缓存图片文件（路径+文件名）用来向后台传数据 -->
-            <img src="{$imgPath}{$news.img_name}.jpg" id="imgView"/><!--图片预览，未上传图片时显示大叉子-->
+        <div class="news-title">
+            摘&nbsp;&nbsp;&nbsp;&nbsp;要：
+            <input type="text" name="abstract" value="{$news.abstract}" />
         </div>
 
-        <div align="center">
-            内容：<br>
+        <div class="news-title">
+            <input type="button" value="上传图片" onclick="showShearphoto()">
+            <br>
+            <input type="hidden" id="imgTmpPath" name="imgTmpPath" value="{$imgTmpPath}" />
+            <!--图片缓存路径-->
+            <input type="hidden" id="imgName" name="imgName" value="{$news.img_name}">
+            <!--图片名称，从后台接过来的-->
+            <input type="hidden" id="imgTmpFile" name="imgTmpFile" />
+            <!--缓存图片文件（路径+文件名）用来向后台传数据 -->
+            <img src="{$imgPath}{$news.img_name}" id="imgView" />
+            <!--图片预览，未上传图片时显示大叉子-->
+        </div>
+
+
+        <div class="news-title">
+            内&nbsp;&nbsp;&nbsp;&nbsp;容：
+
             <textarea id="content" name="content"></textarea>
         </div>
-        <div align="center">
-            <input type="submit" value="提交"/>
+        <div class="news-title">
+            <input type="submit" value="提交" />
+            <input type="reset" value="重写" />
         </div>
+
     </div>
 
 </form>
 
 <div id="shearphotoMain" style="display:none">
-    <div><input type="button" value="返回" onclick="hideShearphoto()" align="center"/></div>
+    <div>
+        <input type="button" value="返回" onclick="hideShearphoto()" align="center" />
+    </div>
     <!--主功能部份 主功能部份的标签请勿随意删除，除非你对shearphoto的原理了如指掌，否则JS找不到DOM对象，会给你抱出错误-->
     <div id="shearphoto_loading">程序加载中......</div>
     <!--这是2.2版本加入的缓冲效果，JS方法加载前显示的等待效果-->
