@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = '__PUBLIC__/Ueditor/';
+    window.onload = function(){
+        window.UEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
+        ue = UE.getEditor('content');
+        //判断ueditor 编辑器是否创建成功
+        ue.addListener("ready", function () {
+            // editor准备好之后才可以使用
+            ue.setContent('{$news.content}');
+        });
+    }
+    function showShearphoto(){
+        document.getElementById("news_info").style = "display:none";
+        document.getElementById("shearphotoMain").style = "display:block";
+    }
+    function hideShearphoto(){
+        document.getElementById("shearphotoMain").style = "display:none";
+        document.getElementById("news_info").style = "display:block";
+        document.getElementById("imgView").style = "display:block";
+    }
+</script>
 <head>
     <meta charset=utf-8 />
     <meta name="renderer" content="webkit" />
@@ -16,18 +38,9 @@
     <!--图片特效处理,他只负责特效，其他功能与这个文件完全无关，这个JS从腾讯AI文件  如你不要特效的话，顺带删除这个文件，在hendle.js设置关闭特效-->
     <script type="text/javascript" src="__PUBLIC__/Shearphoto/shearphoto_common/js/handle.js"></script>
     <!--设置和处理对象方法的JS文件，要修改设置，请进入这个文件-->
+
     <script type="text/javascript">
-        function showShearphoto(){
-            document.getElementById("news_info").style = "display:none";
-            document.getElementById("shearphotoMain").style = "display:block";
-//            document.getElementById("shearPhotoImgName").value = document.getElementById("imgName").value;
-//            document.getElementById("param").value = document.getElementById("imgName").value;
-        }
-        function hideShearphoto(){
-            document.getElementById("shearphotoMain").style = "display:none";
-            document.getElementById("news_info").style = "display:block";
-            document.getElementById("imgView").style = "display:block";
-        }
+
     </script>
 
 
