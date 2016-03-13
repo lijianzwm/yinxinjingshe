@@ -58,9 +58,11 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 //关闭错误提示
 require ("shearphoto.config.php");
 //加载设置文件
+
 /*..................................类开始了...........................*/
 class ShearPhoto {
 	public $erro = false;
+	public $imgName = "no_name.jpg";
 	protected function rotate($src, $R) {
 		$arr = array(90, 180, 270);
 		if (in_array($R, $arr)) {
@@ -200,7 +202,8 @@ class ShearPhoto {
 				return false;
 			}
 		}
-		$file_url = $PHPconfig["saveURL"] . $PHPconfig["filename"];
+//		$file_url = $PHPconfig["saveURL"] . $PHPconfig["filename"];这里改动啦！
+		$file_url = $PHPconfig["saveURL"] . $this->imgName;
 		foreach ($PHPconfig["width"] as $k => $v) {
 			($v[0] == 0) ? ($v[0] = $JSconfig["FW"]) : ($v[0] == -1) and ($v[0] = $JSconfig["IW"]);
 			$height = $v[0] / $proportion;
@@ -227,9 +230,12 @@ class ShearPhoto {
 
 /*........................普通截取时开始..........................*/
 
+
+
 if (isset($_POST["JSdate"])) {//普通截取时
 	$ShearPhoto["JSdate"] = json_decode(trim(stripslashes($_POST["JSdate"])), true);
 	$Shear = new ShearPhoto;
+	$Shear->imgName = $_POST["id"];
 	//类实例开始
 	$result = $Shear -> run($ShearPhoto["JSdate"], $ShearPhoto["config"]);
 	//传入参数运行
@@ -255,6 +261,7 @@ if (isset($_POST["JSdate"])) {//普通截取时
 
 elseif (isset($_POST["ShearPhotoIW"]) && isset($_POST["ShearPhotoIH"]) && isset($_POST["ShearPhotoFW"]) && isset($_POST["ShearPhotoFH"]) && isset($_POST["ShearPhotoP"]) && is_numeric($JSconfig["P"] = trim($_POST["ShearPhotoP"])) && is_numeric($JSconfig["IW"] = trim($_POST["ShearPhotoIW"])) && is_numeric($JSconfig["IH"] = trim($_POST["ShearPhotoIH"])) && is_numeric($JSconfig["FW"] = trim($_POST["ShearPhotoFW"])) && is_numeric($JSconfig["FH"] = trim($_POST["ShearPhotoFH"]))) {
 	$Shear = new ShearPhoto;
+	$Shear->imgName = $_POST["id"];
 	//类实例开始
 	$result = $Shear -> html5_run($ShearPhoto["config"], $JSconfig);
 	//加载HTML5已切好的图片独有方法
@@ -285,8 +292,11 @@ else {die('{"erro":"错误的操作！或缺少参数或错误参数"}');
  一般写到数据库都是纯图片名字写进为好，那么正确的做法是把 $result[X]["ImgName"]  写进去数据库
  */
 //ShearPhoto 作者:明哥先生 QQ399195513
-
-$id = $_POST["id"];
+//$id = $_POST["id"];
+////$imgName = $_POST["imgName"];
+//var_dump($id);
+//var_dump($imgName);
+//die();
 $str_result = json_encode($result);
 echo str_replace("\/", "/", $str_result);
 //去掉无用的字符修正URL地址，再把数据传弟给JS

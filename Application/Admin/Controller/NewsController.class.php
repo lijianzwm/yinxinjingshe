@@ -56,16 +56,21 @@ class NewsController extends CommonController{
         $imgTmpFile = I("imgTmpFile");//暂存的图片文件
         $imgData = C("IMAGE_PATH").$data['img_name'];//永久保存的图片文件
         if ($id == C("NEW_NEWS")) {//如果是插入news
-            ImageService::persistence($imgTmpFile, $imgData);
+            if( !ImageService::persistence($imgTmpFile, $imgData) ){
+                dump($imgTmpFile);
+                dump($imgData);
+                die();
+                $this->error("图片重命名失败！");
+            }
             if (M("news")->add($data)) {
                 $this->success("添加动态成功！", U('newsList'));
             }else{
                 $this->error("添加动态失败！");
             }
         }else{//如果是修改news
-            if (!ImageService::delete($imgData)) {
-                $this->error("删除缓存图片失败！");
-            }
+//            if (!ImageService::delete($imgData)) {
+//                $this->error("删除缓存图片失败！");
+//            }
             ImageService::persistence($imgTmpFile, $imgData);
             $data['id'] = $id;
             if( M("news")->save($data)){

@@ -20,6 +20,8 @@
         function showShearphoto(){
             document.getElementById("news_info").style = "display:none";
             document.getElementById("shearphotoMain").style = "display:block";
+//            document.getElementById("shearPhotoImgName").value = document.getElementById("imgName").value;
+//            document.getElementById("param").value = document.getElementById("imgName").value;
         }
         function hideShearphoto(){
             document.getElementById("shearphotoMain").style = "display:none";
@@ -179,7 +181,7 @@
                     </em>
                 </a>
                 <p class="Psava">
-                    <input type="hidden" id="param" value="123123123"/>
+                    <input type="hidden" id="param" value="{$news.img_name}"/>
                     <a id="againIMG" href="javascript:;">重新选择</a>
                     <a id="saveShear" href="javascript:;">保存截图</a>
                 </p>
