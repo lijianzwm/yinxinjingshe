@@ -81,7 +81,8 @@ window.ShearPhoto.MINGGE(function() {
 	relativeUrl === "" || (relativeUrl += "/"); //在相对地址后面加斜框，不需要用户自己加
 	var publicRelat = document.getElementById("relat"); //"relat"对像     
 	var publicRelatImg = publicRelat.getElementsByTagName("img"); //"relat"下的两张图片对像
-	var paramId = document.getElementById("param").value;
+	var shearphotoImgPath = document.getElementById("shearphotoImgPath").value;
+	var shearphotoImgName = document.getElementById("shearphotoImgName").value;
 	var Shear = new ShearPhoto;
 	Shear.config({
 		/*---------------用户设置部份开始-----------------------------------------------------------------------*/
@@ -175,10 +176,11 @@ window.ShearPhoto.MINGGE(function() {
 	/*--------------------------------------------------------------截图成功后，返回来的callback-------------------------*/
 	Shear.complete = function(serverdata) { //截图成功完成时，由shearphoto.php返回数据过来的成功包
 			// alert(serverdata);//你可以调试一下这个返回包
-			prefix = document.getElementById("imgUrl").value;
-			imgSrc = prefix+serverdata[0]["ImgName"];
-			document.getElementById("imgUrl").value=imgSrc;
-			document.getElementById("imgView").src = imgSrc;
+			imgSize = 1;//数字0为大号图，1为中号图，2为小号图
+			imgTmpPath = document.getElementById("imgTmpPath").value;
+			imgData = imgTmpPath+serverdata[imgSize]["ImgName"];
+			document.getElementById("imgTmpFile").value=imgData;
+			document.getElementById("imgView").src = imgData;
 			var point = this.arg.scope.childNodes[0];
 			point.className === "point" && this.arg.scope.removeChild(point);
 			var complete = document.createElement("div");
@@ -189,7 +191,7 @@ window.ShearPhoto.MINGGE(function() {
 			var length = serverdata.length;
 			var creatImg =document.createElement("img");
 			complete.appendChild(creatImg);
-			creatImg.src = this.arg.relativeUrl + serverdata[0]["ImgUrl"];
+			creatImg.src = this.arg.relativeUrl + serverdata[imgSize]["ImgUrl"];//serverdata[]方括号中数字0为大号图，1为中号图，2为小号图
 
 
 			//var length = serverdata.length,
@@ -211,11 +213,9 @@ window.ShearPhoto.MINGGE(function() {
 			completeA.onclick || (completeA.onclick = function() {
 				completeA.onclick = null;
 				this_.arg.scope.removeChild(complete);
-				//document.getElementById("imgName").value=prefix+serverdata[0]["ImgName"];
-				//window.opener.document.getElementById("img").src=serverdata[0]["ImgUrl"];
-				//window.opener.document.getElementById("pic_hint").innerHTML="图片上传完成！";
 				document.getElementById("news_info").style = "display:block";
 				document.getElementById("shearphotoMain").style = "display:none";
+				document.getElementById("imgView").style = "display:block";
 				this_.again();
 				this_.pointhandle(3e3, 10, "截图完成！已返回！", 2, "#fbeb61", "#3a414c");
 
@@ -318,9 +318,9 @@ window.ShearPhoto.MINGGE(function() {
 
 	/*............................截图，左旋，右旋，重新选择..................开始.........看好怎么调用截图，左旋，右旋，重新选择..........................................*/
 	Shear.addEvent(document.getElementById("saveShear"), "click", function() { //按下截图事件，提交到后端的shearphoto.php接收
-		//newsId = JSON.stringify(document.getElementById("shearphoto").value);
 		Shear.SendPHP({
-			id: paramId
+			imgPath: shearphotoImgPath,
+			imgName: shearphotoImgName
 		}); //我们示例截图并且传参数，后端文件shearphoto.php用 示例：$_POST["Shearphoto"] 接收参数，不需要传参数请清空Shear.SendPHP里面的参数示例 Shear.SendPHP();
 
 	});
