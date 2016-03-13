@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin_index.css">
 </head>
+
 <body>
-<table>
-    <tr>
-        <td colspan="3">
-            欢迎您，{$Think.session.realname}
-            <a href="{:U('Login/modifyPassword')}">修改密码</a>
-            <a href="{:U('Login/logout')}">退出登录</a>
-        </td>
-    </tr>
-    <tr>
-        <td><a href="{:U('News/newsList')}">动态管理</a></td>
-        <td><a href="{:U('')}">文集管理</a></td>
-        <td><a href="{:U('')}">影音管理</a></td>
-    </tr>
-</table>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <!--  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                 <span class="sr-only">Toggle navigation</span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+             </button> -->
+            <a class="navbar-brand" href="#"><h1>印心精舍后台管理系统</h1></a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-right" role="search">
+                <div class="nav-right">
+                    欢迎您，{$Think.session.realname}
+                    <a href="{:U('Login/modifyPassword')}">修改密码</a>
+                    <a href="{:U('Login/logout')}">退出登录</a>
+                </div>
+            </form>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<div>
+    <div class="nav-left">
+        <a href="{:U('News/newsList')}">动态管理</a>
+        <a href="{:U('')}">文集管理</a>
+        <a href="{:U('')}">影音管理</a>
+    </div>
+
+</div>
 </body>
+
 </html>
