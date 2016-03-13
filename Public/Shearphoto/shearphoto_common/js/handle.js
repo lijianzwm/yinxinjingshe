@@ -81,8 +81,8 @@ window.ShearPhoto.MINGGE(function() {
 	relativeUrl === "" || (relativeUrl += "/"); //在相对地址后面加斜框，不需要用户自己加
 	var publicRelat = document.getElementById("relat"); //"relat"对像     
 	var publicRelatImg = publicRelat.getElementsByTagName("img"); //"relat"下的两张图片对像
-	var paramId = document.getElementById("param").value;
-	var shearphotoImgName = document.getElementById("shearPhotoImgName").value;
+	var shearphotoImgPath = document.getElementById("shearphotoImgPath").value;
+	var shearphotoImgName = document.getElementById("shearphotoImgName").value;
 	var Shear = new ShearPhoto;
 	Shear.config({
 		/*---------------用户设置部份开始-----------------------------------------------------------------------*/
@@ -319,9 +319,8 @@ window.ShearPhoto.MINGGE(function() {
 	/*............................截图，左旋，右旋，重新选择..................开始.........看好怎么调用截图，左旋，右旋，重新选择..........................................*/
 	Shear.addEvent(document.getElementById("saveShear"), "click", function() { //按下截图事件，提交到后端的shearphoto.php接收
 		Shear.SendPHP({
-			id: paramId
-			//imgName: shearphotoImgName
-			//imgName: paramId
+			imgPath: shearphotoImgPath,
+			imgName: shearphotoImgName
 		}); //我们示例截图并且传参数，后端文件shearphoto.php用 示例：$_POST["Shearphoto"] 接收参数，不需要传参数请清空Shear.SendPHP里面的参数示例 Shear.SendPHP();
 
 	});

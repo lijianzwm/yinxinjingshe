@@ -29,7 +29,7 @@ class NewsController extends CommonController{
         $news['author'] = "";
         $news['abstract'] = "";
         $news['content'] = "";
-        $news['img_name'] = md5(uniqid(rand())).".jpg";
+        $news['img_name'] = md5(uniqid(rand()));
         return $news;
     }
 
@@ -56,12 +56,9 @@ class NewsController extends CommonController{
         $imgTmpFile = I("imgTmpFile");//暂存的图片文件
         $imgData = C("IMAGE_PATH").$data['img_name'];//永久保存的图片文件
         if ($id == C("NEW_NEWS")) {//如果是插入news
-            if( !ImageService::persistence($imgTmpFile, $imgData) ){
-                dump($imgTmpFile);
-                dump($imgData);
-                die();
-                $this->error("图片重命名失败！");
-            }
+//            if( !ImageService::persistence($imgTmpFile, $imgData) ){
+//                $this->error("图片重命名失败！");
+//            }
             if (M("news")->add($data)) {
                 $this->success("添加动态成功！", U('newsList'));
             }else{

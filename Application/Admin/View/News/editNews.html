@@ -54,7 +54,7 @@
             <input type="hidden" id="imgTmpPath" name="imgTmpPath" value="{$imgTmpPath}"/><!--图片缓存路径-->
             <input type="hidden" id="imgName" name="imgName" value="{$news.img_name}"><!--图片名称，从后台接过来的-->
             <input type="hidden" id="imgTmpFile" name="imgTmpFile"/><!--缓存图片文件（路径+文件名）用来向后台传数据 -->
-            <img src="{$imgPath}{$news.img_name}" id="imgView"/><!--图片预览，未上传图片时显示大叉子-->
+            <img src="{$imgPath}{$news.img_name}.jpg" id="imgView"/><!--图片预览，未上传图片时显示大叉子-->
         </div>
 
         <div align="center">
@@ -181,7 +181,9 @@
                     </em>
                 </a>
                 <p class="Psava">
-                    <input type="hidden" id="param" value="{$news.img_name}"/>
+                    <!--<input type="hidden" id="param" value="{$news.img_name}"/>-->
+                    <input type="hidden" id="shearphotoImgPath" value="{$imgPath}"/>
+                    <input type="hidden" id="shearphotoImgName" value="{$news.img_name}"/>
                     <a id="againIMG" href="javascript:;">重新选择</a>
                     <a id="saveShear" href="javascript:;">保存截图</a>
                 </p>
