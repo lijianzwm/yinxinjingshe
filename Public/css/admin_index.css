@@ -1,0 +1,126 @@
+/*初始化css样式*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*整个页面的设置*/
+
+body {
+    text-align: center;
+    background: #B9C3ED;
+    margin: 0 auto;
+    max-width: 1000px;
+    /*border: 1px solid green;
+*/
+}
+
+.nav-left {
+    float: left;
+    font-size: 17px;
+    /* height: 300px;*/
+}
+
+
+/*.nav-right {
+    float: right;
+}*/
+
+.nav-left a {
+    margin-right: 20px;
+}
+
+.nav-left a,
+.nav-right a {
+    line-height: 50px;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+    color: #fff;
+}
+
+.nav-left a:nth-child(1) {
+    padding: 0;
+    /*margin-right: 22px;*/
+    width: auto;
+}
+
+
+/*-----------后台管理系统的界面 --------------*/
+
+
+/*分页的样式*/
+
+.Lright {
+    float: right;
+}
+
+
+/*标题背景的css样式*/
+
+.head_height {
+    height: 90px;
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.navbar-header {
+    height: 99px;
+}
+
+.navbar-default {
+    background-color: #337ab7;
+}
+
+
+/*导航栏的字体颜色设置*/
+
+.navbar-brand h1 {
+    color: #fff;
+}
+
+.navbar-right {
+    padding-top: 50px;
+}
+
+
+/*头部标题的字体设置*/
+
+.title {
+    font-size: 30px;
+    color: #fff;
+}
+
+
+/*list的字体布局*/
+
+.lcenter {
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+
+/*------------------上传图片的设置-----------------*/
+
+#news_info {
+    clear: both;
+    /*border: 1px solid red;*/
+    float:left;
+    
+}
+.news-title{
+	width:300px;
+	
+	 line-height: 25px;
+	 margin-bottom: 10px;
+
+}
+
+/*.news-title-input{
+	width:300px;
+}*/
