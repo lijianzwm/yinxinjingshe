@@ -6,29 +6,49 @@
 </head>
 <script type="text/javascript">
 
+    function ajaxFunction( id, ajaxUrl ){
+        var aj = $.ajax( {
+            url:ajaxUrl,
+            data:{
+                newsId : id
+            },
+            type:'post',
+            cache:false,
+            dataType:'json',
+            success:function(data) {
+                if(data.msg == true ){
+                    alert(data.hint);
+                    window.location.reload();
+                }else{
+                    alert(data.hint);
+                }
+            },
+            error : function() {
+                alert("异常！");
+            }
+        });
+    }
+
     function deleteNews(newsId, newsTitle){
         if( confirm("确定要删除以下内容？\n"+newsTitle)){
             if( confirm("一旦删除便无法恢复，真的确定吗？")){
-                var aj = $.ajax( {
-                    url:"{:U('News/deleteNews')}",
-                    data:{
-                        newsId : newsId
-                    },
-                    type:'post',
-                    cache:false,
-                    dataType:'json',
-                    success:function(data) {
-                        if(data.msg == true ){
-                            alert("删除成功！");
-                            window.location.reload();
-                        }else{
-                            alert("删除失败！");
-                        }
-                    },
-                    error : function() {
-                        alert("异常！");
-                    }
-                });
+                ajaxFunction(newsId, "{U:('News/deleteNews')}");
+            }
+        }
+    }
+
+    function stickie(newsId, newsTitle){
+        if( confirm("确定要将以下推送置顶吗？\n"+newsTitle)){
+            if( confirm("请再次确认\n"+newsTitle)){
+                ajaxFunction(newsId, "{:U('News/stickieNews')}");
+            }
+        }
+    }
+
+    function unstickie(newsId, newsTitle){
+        if( confirm("确定要将以下推送置顶吗？\n"+newsTitle)){
+            if( confirm("请再次确认\n"+newsTitle)){
+                ajaxFunction(newsId, "{:U('News/unstickieNews')}");
             }
         }
     }
@@ -46,8 +66,9 @@
             <td>{$v.title}</td>
             <td>{$v.author}</td>
             <td><a href="{:U('News/editNews', array('id'=>$v['id']))}">修改</a>&nbsp;
-                <a href="#" onclick="deleteNews('{$v.id}','{$v.title}')" >删除</a>
-                <!--<td><a href="#" onclick="deleteNews($v['id'])" >置顶</a></td>-->
+                <a href="#" onclick="deleteNews('{$v.id}','{$v.title}')" >删除</a>&nbsp;
+                <a href="#" onclick="stickie('{$v.id}','{$v.title}')" >置顶</a>&nbsp;
+                <a href="#" onclick="unstickie('{$v.id}','{$v.title}')" >取消置顶</a>&nbsp;
             </td>
         </tr>
     </foreach>

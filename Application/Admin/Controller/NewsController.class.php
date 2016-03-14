@@ -56,19 +56,12 @@ class NewsController extends CommonController{
         $imgTmpFile = I("imgTmpFile");//暂存的图片文件
         $imgData = C("IMAGE_PATH").$data['img_name'];//永久保存的图片文件
         if ($id == C("NEW_NEWS")) {//如果是插入news
-//            if( !ImageService::persistence($imgTmpFile, $imgData) ){
-//                $this->error("图片重命名失败！");
-//            }
             if (M("news")->add($data)) {
                 $this->success("添加动态成功！", U('newsList'));
             }else{
                 $this->error("添加动态失败！");
             }
         }else{//如果是修改news
-//            if (!ImageService::delete($imgData)) {
-//                $this->error("删除缓存图片失败！");
-//            }
-            ImageService::persistence($imgTmpFile, $imgData);
             $data['id'] = $id;
             if( M("news")->save($data)){
                 $this->success("修改动态成功！", U('newsList'));
@@ -122,9 +115,57 @@ class NewsController extends CommonController{
         $json = null;
         if( M("news")->where("id=$newsId")->delete()){
              $json['msg'] = true;
+             $json['hint'] = "删除成功！";
         }else{
             $json['msg'] = false;
+            $json['hint'] = "删除失败！";
         }
         echo json_encode($json);
     }
+
+    public function stickieNews(){
+        $newsId = I("newsId");
+        $json = null;
+        $news = M("news")->where("id=$newsId")->find();
+        if( $news ){
+            if( $news["create_time"] == C("STICKIE_TIME")){
+                $json['msg'] = false;
+                $json['hint'] = "该推送已经被置顶了，不能重复置顶！";
+            }else{
+                $news["create_time"] = C("STICKIE_TIME");
+                if (M("news")->save($news)) {
+                    $json['msg'] = true;
+                    $json['hint'] = "置顶成功！";
+                }else{
+                    $json['msg'] = false;
+                    $json['hint'] = "置顶失败！";
+                }
+            }
+        }else{
+            $json['msg'] = false;
+            $json['hint'] = "置顶失败！";
+        }
+        echo json_encode($json);
+    }
+
+    public function unstickieNews(){
+        $newsId = I("newsId");
+        $json = null;
+        $news = M("news")->where("id=$newsId")->find();
+        if( $news && $news['create_time'] == C("STICKIE_TIME")){
+            $news['create_time'] = $news["update_time"];
+            if (M("news")->save($news)) {
+                $json['msg'] = true;
+                $json['hint'] = "取消置顶成功！";
+            }else{
+                $json['msg'] = false;
+                $json['hint'] = "取消置顶失败！";
+            }
+        }else{
+            $json['msg'] = false;
+            $json['hint'] = "该推送未被置顶！";
+        }
+        echo json_encode($json);
+    }
+
 }
