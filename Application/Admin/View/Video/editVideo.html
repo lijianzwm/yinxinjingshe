@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑视频</title>
+</head>
+<body>
+<form action="{:U('Video/editVideoHandler')}" method="post">
+    <div>
+        视频集：{$video.father}
+        <input type="hidden" name="videoId" value="{$video.video_id}"/>
+        <input type="hidden" name="setId" value="{$video.set_id}"/>
+    </div>
+    <div>视频编号：<input type="text" name="sortNum" value="{$video.sort_num}"/></div>
+    <div>视频名称：<input type="text" name="name" value="{$video.name}"/></div>
+    <div>视频链接通用代码：</div>
+    <div><textarea name="content">{$video.content}</textarea></div>
+    <div><input type="submit" value="提交"/></div>
+</form>
+</body>
+</html>
