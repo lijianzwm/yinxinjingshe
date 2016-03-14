@@ -11,7 +11,7 @@ namespace Common\Service;
 
 class NewsService{
     public function renderNewsList( $page, $limit ){
-        return M("news")->order("commit_time desc")->page($page,$limit)->select();
+        return M("news")->order("create_time desc")->page($page,$limit)->select();
     }
 
     public static function getNews( $id ){
