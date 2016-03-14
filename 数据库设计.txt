@@ -33,9 +33,10 @@ CREATE TABLE `xzx_activity` (
   `img_name` varchar(100) NOT NULL COMMENT '标题图片名称',
   `sponsor` varchar(20) NOT NULL COMMENT '活动发起者',
   `activity_name` varchar(50) NOT NULL COMMENT '活动名称',
-  `begin_time` datetime DEFAULT NULL COMMENT '活动开始时间',
+  `start_time` datetime DEFAULT NULL COMMENT '活动开始时间',
   `reg_deadline` datetime DEFAULT NULL COMMENT '报名截止时间',
   `content` text NOT NULL COMMENT '活动简介',
+  `is_pushed` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否被推送',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
