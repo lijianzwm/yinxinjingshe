@@ -187,25 +187,11 @@ window.ShearPhoto.MINGGE(function() {
 			complete.className = "complete";
 			complete.style.height = this.arg.scopeHeight + "px";
 			this.arg.scope.insertBefore(complete, this.arg.scope.childNodes[0]);
-
-			var length = serverdata.length;
-			var creatImg =document.createElement("img");
-			complete.appendChild(creatImg);
-			creatImg.src = this.arg.relativeUrl + serverdata[imgSize]["ImgUrl"];//serverdata[]方括号中数字0为大号图，1为中号图，2为小号图
-
-
-			//var length = serverdata.length,
-			//	creatImg;
-			//for (var i = 0; i < length; i++) {
-			//	creatImg = document.createElement("img");
-			//	complete.appendChild(creatImg);
-			//	creatImg.src = this.arg.relativeUrl + serverdata[i]["ImgUrl"];
-			//}
 			this.HTML5.EffectsReturn();
 			this.HTML5.BOLBID && this.HTML5.URL.revokeObjectURL(this.HTML5.BOLBID);
 			creatImg = document.createElement("DIV");
 			creatImg.className = "completeTxt";
-			creatImg.innerHTML = '<strong><i></i>恭喜你！截图成功</strong> <p>以上是你图片的' + length + '种尺寸</p><a href="javascript:;" id="completeA">关闭</a>';
+			creatImg.innerHTML = '<strong><i></i>恭喜你！截图成功</strong><a href="javascript:;" id="completeA">关闭</a>';
 			complete.appendChild(creatImg);
 			var completeA = document.getElementById("completeA");
 			var this_ = this;
@@ -213,9 +199,10 @@ window.ShearPhoto.MINGGE(function() {
 			completeA.onclick || (completeA.onclick = function() {
 				completeA.onclick = null;
 				this_.arg.scope.removeChild(complete);
-				document.getElementById("news_info").style = "display:block";
+				document.getElementById("table_info").style = "display:block";
 				document.getElementById("shearphotoMain").style = "display:none";
-				document.getElementById("imgView").style = "display:block";
+				document.getElementById("imgView").style = "display:block align:center";
+				document.getElementById("imgView").src = document.getElementById("imgView").src+'?t='+Math.random();
 				this_.again();
 				this_.pointhandle(3e3, 10, "截图完成！已返回！", 2, "#fbeb61", "#3a414c");
 
