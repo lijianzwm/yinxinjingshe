@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>视频列表</title>
+</head>
+<body>
+<div>
+    <div>
+        <a href="{:U('Video/addVideoSet')}">添加视频集</a>
+    </div>
+    <foreach name="videoSetList" item="v">
+        <div>
+            <a href="{:U('Video/videoSet', array('setId'=>$v['set_id']))}">{$v.name}</a>
+        </div>
+    </foreach>
+</div>
+</body>
+</html>

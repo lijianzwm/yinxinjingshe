@@ -15,3 +15,12 @@ CREATE TABLE `xzx_video_set_list` (
   `author` varchar(30) DEFAULT NULL COMMENT '视频集作者',
   PRIMARY KEY (`set_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `xzx_video` (
+  `video_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '视频编号',
+  `set_id` int(10) unsigned NOT NULL COMMENT '视频所属视频集编号',
+  `sort_num` int(10) unsigned NOT NULL COMMENT '视频排序编号',
+  `name` varchar(100) NOT NULL COMMENT '本节视频标题',
+  `content` text COMMENT '视频内容',
+  PRIMARY KEY (`video_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -110,8 +110,7 @@ body {
 #news_info {
     clear: both;
     /*border: 1px solid red;*/
-    float:left;
-    
+    float:right;
 }
 .news-title{
 	width:300px;

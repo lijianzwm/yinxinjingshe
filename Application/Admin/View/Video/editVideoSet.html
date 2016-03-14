@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑视频集信息</title>
+</head>
+<body>
+<div>
+<form action="{:U('Video/editVideoSetHandler')}" method="post">
+    <div>视频集名称：<input type="text" name="name" value="{$videoSet.name}"/></div>
+    <div>视频集作者：<input type="text" name="author" value="{$videoSet.author}"/></div>
+    <div>
+        <input type="hidden" name="setId" value="{$videoSet.set_id}"/>
+        <input type="submit" value="提交"/>
+        <input type="reset" value="重置"/>
+    </div>
+</form>
+</div>
+</body>
+</html>
