@@ -213,7 +213,7 @@ window.ShearPhoto.MINGGE(function() {
 			completeA.onclick || (completeA.onclick = function() {
 				completeA.onclick = null;
 				this_.arg.scope.removeChild(complete);
-				document.getElementById("news_info").style = "display:block";
+				document.getElementById("table_info").style = "display:block";
 				document.getElementById("shearphotoMain").style = "display:none";
 				document.getElementById("imgView").style = "display:block";
 				this_.again();

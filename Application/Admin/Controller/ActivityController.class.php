@@ -25,12 +25,16 @@ class ActivityController extends CommonController{
     public function addActivity(){
         $activity = ActivityService::getEmptyActivity();
         $this->assign("activity", $activity);
+        $this->assign("imgPath", C("IMAGE_PATH"));//文件真正保存的路径，不包括文件名
+        $this->assign("imgTmpPath", C("SEEARPHOTO_TMP_PATH"));//文件临时保存的路径，不包括文件名
         $this->display("editActivity");
     }
 
     public function modifyActivity(){
         $activity = ActivityService::getActivity(I("id"));
         $this->assign("activity", $activity);
+        $this->assign("imgPath", C("IMAGE_PATH"));//文件真正保存的路径，不包括文件名
+        $this->assign("imgTmpPath", C("SEEARPHOTO_TMP_PATH"));//文件临时保存的路径，不包括文件名
         $this->display("editActivity");
     }
 

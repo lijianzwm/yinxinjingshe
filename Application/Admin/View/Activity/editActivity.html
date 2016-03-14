@@ -1,33 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript">
-    window.UEDITOR_HOME_URL = '__PUBLIC__/Ueditor/';
-    window.onload = function(){
-        window.UEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
-        ue = UE.getEditor('content');
-        //判断ueditor 编辑器是否创建成功
-        ue.addListener("ready", function () {
-            // editor准备好之后才可以使用
-            ue.setContent('{$news.content}');
-        });
-    }
-    function showShearphoto(){
-        document.getElementById("news_info").style = "display:none";
-        document.getElementById("shearphotoMain").style = "display:block";
-    }
-    function hideShearphoto(){
-        document.getElementById("shearphotoMain").style = "display:none";
-        document.getElementById("news_info").style = "display:block";
-        document.getElementById("imgView").style = "display:block";
-    }
-</script>
+<html lang="en">
 <head>
-    <meta charset=utf-8 />
+    <meta charset="UTF-8">
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="IE=8,9,10">
-    <title>编辑动态</title>
+    <title>编辑报名信息</title>
     <link href="__PUBLIC__/Shearphoto/shearphoto_common/css/ShearPhoto.css" rel="stylesheet" type="text/css" media="all">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin_index.css">
     <!--CSS文件，有点废话-->
@@ -39,60 +16,59 @@
     <!--图片特效处理,他只负责特效，其他功能与这个文件完全无关，这个JS从腾讯AI文件  如你不要特效的话，顺带删除这个文件，在hendle.js设置关闭特效-->
     <script type="text/javascript" src="__PUBLIC__/Shearphoto/shearphoto_common/js/handle.js"></script>
     <!--设置和处理对象方法的JS文件，要修改设置，请进入这个文件-->
-
-    <script type="text/javascript">
-
-    </script>
-
-
 </head>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = '__PUBLIC__/Ueditor/';
+    window.onload = function(){
+                window.UEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
+                ue = UE.getEditor('content');
+                //判断ueditor 编辑器是否创建成功
+                ue.addListener("ready", function () {
+                    // editor准备好之后才可以使用
+                    ue.setContent('{$activity.content}');
+                });
+            };
 
-<body >
-<form action="{:U('News/editNewsHandler')}" method="post">
+    function showShearphoto(){
+        document.getElementById("shearphotoMain").style = "display:block";
+        document.getElementById("table_info").style = "display:none";
+    }
+
+    function hideShearphoto(){
+        document.getElementById("shearphotoMain").style = "display:none";
+        document.getElementById("table_info").style = "display:block";
+    }
+
+</script>
+<body>
+<form action="{:U('Activity/editActivityHandler')}" method="post">
     <div id="table_info">
-        <div class="news-title">
-            标&nbsp;&nbsp;&nbsp;&nbsp;题：
-            <input type="text" name="title" value="{$news.title}" />
-            <input type="hidden" name="id" value="{$news.id}" />
-        </div>
-
-        <div class="news-title">
-            作&nbsp;&nbsp;&nbsp;&nbsp;者：{$Think.session.realname}
-            <input type="hidden" name="author" value="{$Think.session.realname}" />
-        </div>
-        <div class="news-title">
-            摘&nbsp;&nbsp;&nbsp;&nbsp;要：
-            <input type="text" name="abstract" value="{$news.abstract}" />
-        </div>
-
-        <div class="news-title">
-            <input type="button" value="上传图片" onclick="showShearphoto()">
-            <br>
+        <div><input type="hidden" name="id" value="{$activity.id}"/></div>
+        <div>活动标题：<input type="text" name="title" value="{$activity.title}"/></div>
+        <div>图片名称：{$activity.img_name}</div>
+        <div><input type="button" value="上传图片" onclick="showShearphoto()"/></div>
+        <div>
             <input type="hidden" id="imgTmpPath" name="imgTmpPath" value="{$imgTmpPath}" />
             <!--图片缓存路径-->
-            <input type="hidden" id="imgName" name="imgName" value="{$news.img_name}">
+            <input type="hidden" id="imgName" name="imgName" value="{$activity.img_name}"/>
             <!--图片名称，从后台接过来的-->
             <input type="hidden" id="imgTmpFile" name="imgTmpFile" />
             <!--缓存图片文件（路径+文件名）用来向后台传数据 -->
-            <img src="{$imgPath}{$news.img_name}.jpg" id="imgView" align="center"/>
+            <img src="{$imgPath}{$activity.img_name}.jpg" id="imgView" align="center"/>
             <!--图片预览，未上传图片时显示大叉子-->
         </div>
-
-
-        <div class="news-title">
-            内&nbsp;&nbsp;&nbsp;&nbsp;容：
-
-            <textarea id="content" name="content"></textarea>
-        </div>
-        <div class="news-title">
-            <input type="submit" value="提交" />
-            <input type="reset" value="重写" />
-        </div>
-
+        <div>发起人：{$Think.session.realname}</div>
+        <div><input type="hidden" name="sponsor" value="{$Think.session.realname}"/></div>
+        <div>活动名称：<input type="text" name="activityName" value="{$activity.activity_name}"/></div>
+        <div>活动开始时间：<input type="datetime" name="startTime" value="{$activity.start_time}"/></div>
+        <div>报名截止时间：<input type="datetime" name="regDeadline" value="{$activity.reg_deadline}"/></div>
+        <div>活动介绍：</div>
+        <div><textarea id="content" name="content"></textarea></div>
+        <div><input type="submit" value="提交"/></div>
     </div>
-
 </form>
-
 <div id="shearphotoMain" style="display:none">
     <div>
         <input type="button" value="返回" onclick="hideShearphoto()" align="center" />
@@ -210,7 +186,7 @@
                 <p class="Psava">
                     <!--<input type="hidden" id="param" value="{$news.img_name}"/>-->
                     <input type="hidden" id="shearphotoImgPath" value="{$imgPath}"/>
-                    <input type="hidden" id="shearphotoImgName" value="{$news.img_name}"/>
+                    <input type="hidden" id="shearphotoImgName" value="{$activity.img_name}"/>
                     <a id="againIMG" href="javascript:;">重新选择</a>
                     <a id="saveShear" href="javascript:;">保存截图</a>
                 </p>
@@ -263,8 +239,5 @@
     </div>
     <!--拍照-->
 </div>
-
-
 </body>
-
 </html>
