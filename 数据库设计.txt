@@ -24,3 +24,15 @@ CREATE TABLE `xzx_video` (
   `content` text COMMENT '视频内容',
   PRIMARY KEY (`video_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `xzx_activity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '活动id',
+  `title` varchar(100) NOT NULL COMMENT '推送的标题',
+  `img_name` varchar(100) NOT NULL COMMENT '标题图片名称',
+  `sponsor` varchar(20) NOT NULL COMMENT '活动发起者',
+  `activity_name` varchar(50) NOT NULL COMMENT '活动名称',
+  `begin_time` datetime DEFAULT NULL COMMENT '活动开始时间',
+  `reg_deadline` datetime DEFAULT NULL COMMENT '报名截止时间',
+  `content` text NOT NULL COMMENT '活动简介',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
