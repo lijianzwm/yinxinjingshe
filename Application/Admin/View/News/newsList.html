@@ -32,7 +32,7 @@
     function deleteNews(newsId, newsTitle){
         if( confirm("确定要删除以下内容？\n"+newsTitle)){
             if( confirm("一旦删除便无法恢复，真的确定吗？")){
-                ajaxFunction(newsId, "{U:('News/deleteNews')}");
+                ajaxFunction(newsId, "{:U('News/deleteNews')}");
             }
         }
     }
