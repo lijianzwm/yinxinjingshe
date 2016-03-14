@@ -17,7 +17,7 @@ class NewsController extends CommonController{
         $count = $news->count();
         $Page = new \Think\Page($count,$itemNumPerPage);
         $show = $Page->show();// 分页显示输出
-        $newsList = $news->order("commit_time desc")->limit($Page->firstRow.','.$Page->listRows)->select();
+        $newsList = $news->order("create_time desc")->limit($Page->firstRow.','.$Page->listRows)->select();
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('newsList', $newsList);
         $this->display();
