@@ -1,13 +1,14 @@
 ﻿CREATE TABLE `xzx_news` (
-`id` int( 10 ) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-`title` varchar( 100 ) NOT NULL COMMENT '����',
-`author` varchar( 20 ) NOT NULL COMMENT '����',
-`img_name` varchar( 500 ) NOT NULL COMMENT '����ͼƬ·��',
-`abstract` char( 200 ) COMMENT 'ժҪ',
-`content` text COMMENT '��̬����',
-`commit_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '����ʱ��',
-PRIMARY KEY ( `id` )
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `title` varchar(100) NOT NULL COMMENT '推送标题',
+  `author` varchar(20) NOT NULL COMMENT '推送发起人',
+  `img_name` varchar(500) NOT NULL COMMENT '标题图片名称',
+  `abstract` char(200) DEFAULT NULL COMMENT '推送摘要',
+  `content` text COMMENT '推送正文',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '推送创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '推送更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `xzx_video_set_list` (
   `set_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '视频集id',
