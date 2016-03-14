@@ -15,7 +15,9 @@ class NewsService{
     }
 
     public static function getNews( $id ){
-        return M("news")->where("id='$id'")->find();
+        $news = M("news")->where("id='$id'")->find();
+        $news['content'] = html_entity_decode($news['content']);
+        return $news;
     }
 
 }
