@@ -61,4 +61,16 @@ class ActivityController extends CommonController{
             }
         }
     }
+
+    public function deleteActivity(){
+        $id = I("id");
+        $json = null;
+        if( M("activity")->where("id='$id'")->delete()){
+            $json['msg'] = true;
+        }else{
+            $json['msg'] = false;
+        }
+        echo json_encode($json);
+    }
+
 }
