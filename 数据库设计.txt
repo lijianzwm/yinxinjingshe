@@ -36,3 +36,12 @@ CREATE TABLE `xzx_activity` (
   `content` text NOT NULL COMMENT '活动简介',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table xzx_participant(
+	id int(11) not null auto_increment comment '活动参与者id',
+	realname varchar(20) not null comment '真实姓名',
+	province varchar(20) not null comment '所在省份',
+  city varchar(20) not null comment '所在城市',
+	phone varchar(20)  not null comment '手机号码',
+	PRIMARY KEY (`id`)
+)engine=InnoDB default charset=utf8;
