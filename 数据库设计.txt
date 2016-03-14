@@ -1,5 +1,6 @@
 ﻿CREATE TABLE `xzx_news` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `news_type` tinyint(4) NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL COMMENT '推送标题',
   `author` varchar(20) NOT NULL COMMENT '推送发起人',
   `img_name` varchar(500) NOT NULL COMMENT '标题图片名称',
