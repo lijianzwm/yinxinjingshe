@@ -1,5 +1,6 @@
 ﻿CREATE TABLE `xzx_news` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `news_type` tinyint(4) NOT NULL DEFAULT '0',
   `title` varchar(100) NOT NULL COMMENT '推送标题',
   `author` varchar(20) NOT NULL COMMENT '推送发起人',
   `img_name` varchar(500) NOT NULL COMMENT '标题图片名称',
@@ -32,11 +33,13 @@ CREATE TABLE `xzx_activity` (
   `img_name` varchar(100) NOT NULL COMMENT '标题图片名称',
   `sponsor` varchar(20) NOT NULL COMMENT '活动发起者',
   `activity_name` varchar(50) NOT NULL COMMENT '活动名称',
-  `begin_time` datetime DEFAULT NULL COMMENT '活动开始时间',
+  `start_time` datetime DEFAULT NULL COMMENT '活动开始时间',
   `reg_deadline` datetime DEFAULT NULL COMMENT '报名截止时间',
   `content` text NOT NULL COMMENT '活动简介',
+  `is_pushed` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否被推送',
+	`news_id` int(11) DEFAULT 0 COMMENT '生成的推送id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 create table xzx_participant(
 	id int(11) not null auto_increment comment '活动参与者id',
