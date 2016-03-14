@@ -11,7 +11,9 @@ namespace Common\Service;
 
 class ActivityService{
     public static function getActivity($id){
-        return M("activity")->where("id='$id'")->find();
+        $activity = M("activity")->where("id='$id'")->find();
+        $activity["content"] = html_entity_decode($activity["content"]);
+        return $activity;
     }
 
     public static function getEmptyActivity(){
