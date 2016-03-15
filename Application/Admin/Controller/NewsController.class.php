@@ -57,16 +57,16 @@ class NewsController extends CommonController{
         $imgData = C("IMAGE_PATH").$data['img_name'];//永久保存的图片文件
         if ($id == C("NEW_NEWS")) {//如果是插入news
             if (M("news")->add($data)) {
-                $this->success("添加动态成功！", U('newsList'));
+                $this->success("添加推送成功！", U('newsList'));
             }else{
-                $this->error("添加动态失败！");
+                $this->error("添加推送失败！");
             }
         }else{//如果是修改news
             $data['id'] = $id;
             if( M("news")->save($data)){
-                $this->success("修改动态成功！", U('newsList'));
+                $this->success("修改推送成功！", U('newsList'));
             }else{
-                $this->error("当前动态未被修改！");
+                $this->error("当前推送未被修改！");
             }
         }
     }
@@ -78,9 +78,9 @@ class NewsController extends CommonController{
         $data['abstract'] = I("abstract");
         $data['content'] = I("content");
         if (M("news")->add($data)) {
-            $this->success("添加动态成功！", U('newsList'));
+            $this->success("添加推送成功！", U('newsList'));
         }else{
-            $this->error("添加动态失败！");
+            $this->error("添加推送失败！");
         }
     }
 
