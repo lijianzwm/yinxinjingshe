@@ -1,4 +1,13 @@
-﻿CREATE TABLE `xzx_news` (
+﻿CREATE TABLE `xzx_admin` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `username` varchar(20) NOT NULL COMMENT '用户名',
+  `realname` varchar(20) NOT NULL COMMENT '真实姓名',
+  `password` varchar(20) DEFAULT NULL COMMENT '密码',
+	`phone` varchar(20) DEFAULT NULL COMMENT '联系电话',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `xzx_news` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   `news_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '推送类型，0：推送，1：活动报名推送',
   `title` varchar(100) NOT NULL COMMENT '推送标题',
