@@ -6,3 +6,6 @@
 
 #忽略shearphoto上传的文件
 /Public/Shearphoto/shearphoto_common/file/shearphoto_file/*
+
+#忽略APICloud的metadata文件夹
+/APICloud/.metadata/*
