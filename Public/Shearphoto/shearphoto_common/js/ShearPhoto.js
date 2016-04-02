@@ -2027,6 +2027,7 @@ window.ShearPhoto.MyAjax.prototype.carry = function(arg) {
 		typeof arg.error === "function" && arg.error(505);
 		return;
 	}
+	alert(arg.url);
 	xmlhttp.send(SendArg[0]);
 	if (arg.async === false) {
 		self.handle(xmlhttp, arg);

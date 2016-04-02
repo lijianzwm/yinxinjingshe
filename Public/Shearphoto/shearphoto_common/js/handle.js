@@ -55,7 +55,7 @@ shearphoto采用原生JS面向对象 + 原生PHP面向对象开发，绝对不�
 /*----------------------------注释结束--程序开始-----------------------------------------------------------*/
 window.ShearPhoto.MINGGE(function() {
 	//██████████重要设置████████████████
-	var relativeUrl = "/yinxinjingshe/Public/Shearphoto/shearphoto_common"; //你不要在后面加斜杠，系统会自动给你加上斜杠，不信看下面！   index.html的JS引用路径自己改，很简单的说
+	var relativeUrl = "/Public/Shearphoto/shearphoto_common"; //你不要在后面加斜杠，系统会自动给你加上斜杠，不信看下面！   index.html的JS引用路径自己改，很简单的说
 	/*
 			        relativeUrl有必要详细讲一下，这是1.4新加入的API
 			        相对路径设置(后面不要有斜杠)！

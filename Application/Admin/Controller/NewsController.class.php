@@ -40,8 +40,9 @@ class NewsController extends CommonController{
         }else{
             $news = $this->getEmptyNews();
         }
-        $this->assign("imgPath", C("IMAGE_PATH"));//文件真正保存的路径，不包括文件名
-        $this->assign("imgTmpPath", C("SEEARPHOTO_TMP_PATH"));//文件临时保存的路径，不包括文件名
+        $imgName = md5(uniqid(rand())).".jpg";
+        $this->assign("tmpImgName", "tmp_".$imgName);//上传完整图的名称
+        $this->assign("imgName", $imgName);//图片截取后的名称
         $this->assign("news", $news);
         $this->display();
     }
@@ -168,4 +169,28 @@ class NewsController extends CommonController{
         echo json_encode($json);
     }
 
+    /**
+     * Jcrop截图处理后台
+     */
+    public function jcrop(){
+        $image = new \Think\Image();
+        $tmpImagePath =  C("TMP_PATH").I("tmpImgName");
+        $imagePath =  C("IMAGE_PATH").I("imgName");
+        $widthHeight = C("JCROP_IMAGE_WIDTH_HEIGHT");
+        $image->open($tmpImagePath);
+        $image->crop($_POST['w'],$_POST['h'],$_POST['x'],$_POST['y'])
+            ->thumb($widthHeight,$widthHeight,\Think\Image::IMAGE_THUMB_FIXED)->save($imagePath);
+        unlink($tmpImagePath);
+        exit;
+    }
+
+    /**
+     * 上传图片
+     */
+    public function uploadHandler(){
+        $tmpImgName = I("tmpImgName");
+        $path = iconv('utf-8','gb2312',C("ABS_TMP_PATH").$tmpImgName);
+        move_uploaded_file($_FILES['upload_file']['tmp_name'], $path);
+        echo "<textarea><img src='{$path}' id='cropbox' /></textarea>";
+    }
 }
