@@ -181,7 +181,8 @@ class NewsController extends CommonController{
         $image->crop($_POST['w'],$_POST['h'],$_POST['x'],$_POST['y'])
             ->thumb($widthHeight,$widthHeight,\Think\Image::IMAGE_THUMB_FIXED)->save($imagePath);
         unlink($tmpImagePath);
-        exit;
+        $ret['error_code'] = 0;
+        echo json_encode($ret);
     }
 
     /**
@@ -189,8 +190,18 @@ class NewsController extends CommonController{
      */
     public function uploadHandler(){
         $tmpImgName = I("tmpImgName");
-        $path = iconv('utf-8','gb2312',C("ABS_TMP_PATH").$tmpImgName);
-        move_uploaded_file($_FILES['upload_file']['tmp_name'], $path);
-        echo "<textarea><img src='{$path}' id='cropbox' /></textarea>";
+        $absPath = iconv('utf-8','gb2312',C("ABS_TMP_PATH").$tmpImgName);
+        move_uploaded_file($_FILES['upload_file']['tmp_name'], $absPath);
+        $path = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
+        ImageService::thumb(500, $path, $path);
+        echo "<textarea><img src='{$absPath}' id='cropbox' /></textarea>";
     }
+
+    public function test(){
+        $tmpImgName = "tmp_8d8ce56227a26ed597600b5bfd916042.jpg";
+        $path = C("TMP_PATH").$tmpImgName;
+        dump($path);
+        ImageService::thumb(500, $path, $path);
+    }
+
 }
