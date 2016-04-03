@@ -185,23 +185,14 @@ class NewsController extends CommonController{
         echo json_encode($ret);
     }
 
-    /**
-     * 上传图片
-     */
     public function uploadHandler(){
         $tmpImgName = I("tmpImgName");
-        $absPath = iconv('utf-8','gb2312',C("ABS_TMP_PATH").$tmpImgName);
-        move_uploaded_file($_FILES['upload_file']['tmp_name'], $absPath);
-        $path = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
-        ImageService::thumb(500, $path, $path);
+        $path = iconv('utf-8','gb2312',"Upload/tmp/".$tmpImgName);
+        $absPath = C("ABS_TMP_PATH").$tmpImgName;
+        move_uploaded_file($_FILES['upload_file']['tmp_name'], $path);
+        $thumbPath = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
+        ImageService::thumb(870, $thumbPath, $thumbPath);
         echo "<textarea><img src='{$absPath}' id='cropbox' /></textarea>";
-    }
-
-    public function test(){
-        $tmpImgName = "tmp_8d8ce56227a26ed597600b5bfd916042.jpg";
-        $path = C("TMP_PATH").$tmpImgName;
-        dump($path);
-        ImageService::thumb(500, $path, $path);
     }
 
 }

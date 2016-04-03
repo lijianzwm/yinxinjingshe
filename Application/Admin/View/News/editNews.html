@@ -50,7 +50,6 @@
     });
 
     function jcrop(url){
-        alert(url);
         xx = document.getElementById("x").value;
         yy = document.getElementById("x").value;
         ww = document.getElementById("x").value;
@@ -79,6 +78,9 @@
                 alert("异常！");
             }
         });
+        hideJcrop();
+        document.getElementById("imgView").src = document.getElementById("")
+
     }
 
     function showJcrop(){
@@ -120,13 +122,7 @@
         <div class="news-title">
             <input type="button" value="上传图片" onclick="showJcrop()">
             <br>
-            <input type="hidden" id="imgTmpPath" name="imgTmpPath" value="{$imgTmpPath}" />
-            <!--图片缓存路径-->
-            <input type="hidden" id="imgName" name="imgName" value="{$news.img_name}">
-            <!--图片名称，从后台接过来的-->
-            <input type="hidden" id="imgTmpFile" name="imgTmpFile" />
-            <!--缓存图片文件（路径+文件名）用来向后台传数据 -->
-            <img src="{$imgPath}{$news.img_name}.jpg" id="imgView" align="center"/>
+            <img src="__PUBLIC__/Image/no_image.png" id="imgView" align="center"/>
             <!--图片预览，未上传图片时显示大叉子-->
         </div>
         <div class="news-title">
@@ -144,7 +140,7 @@
 </form>
 
 <div id="jcropDiv" style="display:none">
-    <form id="submit_form" method="post" action="{:U('Test/uploadHandler')}" target="exec_target" enctype="multipart/form-data">
+    <form id="submit_form" method="post" action="{:U('News/uploadHandler')}" target="exec_target" enctype="multipart/form-data">
         <input type="hidden" name="tmpImgName" value="{$tmpImgName}"/>
         <input type="file" name="upload_file" id="upload_file">
     </form>
