@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>报名列表</title>
 </head>
+<script src="__PUBLIC__/lib/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
     function deleteActivity(activityId, activityName){
         if( confirm("确定要删除以下内容？\n"+activityName)){
@@ -34,12 +35,12 @@
 </script>
 <body>
 <div>
-    <div><a href="{:U('Activity/addActivity')}">添加报名</a></div>
+    <div><a href="{:U('Activity/editActivity')}">添加报名</a></div>
     <foreach name="activityList" item="v">
         <div>
             {$v.title}
             <a>已报名列表</a>
-            <a href="{:U('Activity/modifyActivity', array('id'=>$v['id']))}">修改</a>
+            <a href="{:U('Activity/editActivity', array('id'=>$v['id']))}">修改</a>
             <a href="#" onclick="deleteActivity('{$v.id}', '{$v.activity_name}')">删除</a>
             <if condition="$v['is_pushed'] neq 1">
                 <a href="{:U('Activity/pushActivity', array('id'=>$v['id']))}">推送</a>
