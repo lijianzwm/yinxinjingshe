@@ -42,7 +42,7 @@ class ActivityController extends CommonController{
     public function editActivityHandler(){
         $id = I("id");
         $activity["title"] = I("title");
-        $activity["img_name"] = I("imgName");
+        $activity["img_name"] = I("img");
         $activity["sponsor"] = I("sponsor");
         $activity["activity_name"] = I("activityName");
         $activity["start_time"] = I("startTime");
