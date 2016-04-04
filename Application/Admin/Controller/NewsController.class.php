@@ -41,6 +41,7 @@ class NewsController extends CommonController{
             $news = $this->getEmptyNews();
         }
         $imgName = md5(uniqid(rand())).".jpg";
+        $this->assign("imgViewPath", C("ABS_IMAGE_PATH").$imgName);
         $this->assign("tmpImgName", "tmp_".$imgName);//上传完整图的名称
         $this->assign("imgName", $imgName);//图片截取后的名称
         $this->assign("news", $news);

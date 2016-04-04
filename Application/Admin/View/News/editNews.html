@@ -79,8 +79,10 @@
             }
         });
         hideJcrop();
-        document.getElementById("imgView").src = document.getElementById("")
-
+        document.getElementById("imgView").innerHTML = "<img src='{:C('IMG_LOADING')}' />";
+        setTimeout(function () {
+            document.getElementById("imgView").innerHTML = "<img src='{$imgViewPath}' />";
+        }, 3000);
     }
 
     function showJcrop(){
@@ -119,11 +121,10 @@
             <input type="text" name="abstract" value="{$news.abstract}" />
         </div>
 
-        <div class="news-title">
+        <div class="news-title" >
             <input type="button" value="上传图片" onclick="showJcrop()">
             <br>
-            <img src="__PUBLIC__/Image/no_image.png" id="imgView" align="center"/>
-            <!--图片预览，未上传图片时显示大叉子-->
+            <div id="imgView"></div>
         </div>
         <div class="news-title">
             内&nbsp;&nbsp;&nbsp;&nbsp;容：
