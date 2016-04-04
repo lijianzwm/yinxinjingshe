@@ -22,20 +22,21 @@ class ActivityController extends CommonController{
         $this->display();
     }
 
-    public function addActivity(){
-        $activity = ActivityService::getEmptyActivity();
+    public function editActivity(){
+        $activityId = I("id");
+        if( $activityId ){//如果id被传过来了，就是修改news
+            $activity = ActivityService::getActivity(I("id"));
+            $this->assign("imgInit", C("ABS_IMAGE_PATH").$activity['img_name']);
+        }else{
+            $activity = ActivityService::getEmptyActivity();
+            $this->assign("imgInit",C("IMG_NO_PIC"));
+        }
+        $imgName = md5(uniqid(rand())).".jpg";
+        $this->assign("imgViewPath", C("ABS_IMAGE_PATH").$imgName);
+        $this->assign("tmpImgName", "tmp_".$imgName);//上传完整图的名称
+        $this->assign("imgName", $imgName);//图片截取后的名称
         $this->assign("activity", $activity);
-        $this->assign("imgPath", C("IMAGE_PATH"));//文件真正保存的路径，不包括文件名
-        $this->assign("imgTmpPath", C("SEEARPHOTO_TMP_PATH"));//文件临时保存的路径，不包括文件名
-        $this->display("editActivity");
-    }
-
-    public function modifyActivity(){
-        $activity = ActivityService::getActivity(I("id"));
-        $this->assign("activity", $activity);
-        $this->assign("imgPath", C("IMAGE_PATH"));//文件真正保存的路径，不包括文件名
-        $this->assign("imgTmpPath", C("SEEARPHOTO_TMP_PATH"));//文件临时保存的路径，不包括文件名
-        $this->display("editActivity");
+        $this->display();
     }
 
     public function editActivityHandler(){

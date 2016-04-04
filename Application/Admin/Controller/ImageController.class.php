@@ -7,8 +7,7 @@
  */
 
 namespace Admin\Controller;
-
-
+use Common\Service\ImageService;
 use Think\Controller;
 
 class ImageController extends Controller{
