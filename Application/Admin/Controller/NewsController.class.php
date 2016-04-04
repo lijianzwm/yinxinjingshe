@@ -37,8 +37,10 @@ class NewsController extends CommonController{
         $newsId = I("id");
         if( $newsId ){//如果id被传过来了，就是修改news
             $news = NewsService::getNews($newsId);
+            $this->assign("imgInit", C("ABS_IMAGE_PATH").$news['img_name']);
         }else{
             $news = $this->getEmptyNews();
+            $this->assign("imgInit",C("IMG_NO_PIC"));
         }
         $imgName = md5(uniqid(rand())).".jpg";
         $this->assign("imgViewPath", C("ABS_IMAGE_PATH").$imgName);
@@ -52,7 +54,7 @@ class NewsController extends CommonController{
         $id = I("id");
         $data['title'] = I("title");
         $data['author'] = I("author");
-        $data['img_name'] = I("imgName");
+        $data['img_name'] = I("img");
         $data['abstract'] = I("abstract");
         $data['content'] = I("content");
         $imgTmpFile = I("imgTmpFile");//暂存的图片文件
@@ -70,45 +72,6 @@ class NewsController extends CommonController{
             }else{
                 $this->error("当前推送未被修改！");
             }
-        }
-    }
-
-    public function addNewsHandler(){
-        $data['title'] = I("title");
-        $data['author'] = I("author");
-        $data['img'] = I("img");
-        $data['abstract'] = I("abstract");
-        $data['content'] = I("content");
-        if (M("news")->add($data)) {
-            $this->success("添加推送成功！", U('newsList'));
-        }else{
-            $this->error("添加推送失败！");
-        }
-    }
-
-    public function modifyNews(){
-        $newsId = I("id");
-        $news = M("news")->where("id='$newsId'")->find();
-        if( $news ){
-            $news['content'] = html_entity_decode($news['content']);
-            $this->assign('news', $news);
-            $this->display();
-        }else{
-            $this->error("无此信息！");
-        }
-    }
-
-    public function modifyNewsHandler(){
-        $data['id'] = I("id");
-        $data['title'] = I("title");
-        $data['author'] = I("author");
-        $data['img'] = I("img");
-        $data['abstract'] = I("abstract");
-        $data['content'] = I("content");
-        if( M("news")->save($data)){
-            $this->success("修改成功！", U('newsList'));
-        }else{
-            $this->error("当前内容无变化！");
         }
     }
 
@@ -177,10 +140,11 @@ class NewsController extends CommonController{
         $image = new \Think\Image();
         $tmpImagePath =  C("TMP_PATH").I("tmpImgName");
         $imagePath =  C("IMAGE_PATH").I("imgName");
-        $widthHeight = C("JCROP_IMAGE_WIDTH_HEIGHT");
+        $jcropWidth = C("JCROP_IMAGE_WIDTH");
+        $jcropHeight = C("JCROP_IMAGE_HEIGHT");
         $image->open($tmpImagePath);
         $image->crop($_POST['w'],$_POST['h'],$_POST['x'],$_POST['y'])
-            ->thumb($widthHeight,$widthHeight,\Think\Image::IMAGE_THUMB_FIXED)->save($imagePath);
+            ->thumb($jcropWidth,$jcropHeight,\Think\Image::IMAGE_THUMB_FIXED)->save($imagePath);
         unlink($tmpImagePath);
         $ret['error_code'] = 0;
         echo json_encode($ret);

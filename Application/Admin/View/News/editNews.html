@@ -34,7 +34,7 @@
                 $("#preview").append(data.replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
                 $("#upload_file").val('');
                 $('#cropbox').Jcrop({
-                    aspectRatio: 1,
+                    aspectRatio: "{:C('JCROP_ASPECT_RATIO')}",
                     onSelect: updateCoords
                 });
             }
@@ -124,7 +124,10 @@
         <div class="news-title" >
             <input type="button" value="上传图片" onclick="showJcrop()">
             <br>
-            <div id="imgView"></div>
+            <input type="hidden" name="img" value="{$imgName}" />
+            <div id="imgView">
+                <img src="{$imgInit}" />
+            </div>
         </div>
         <div class="news-title">
             内&nbsp;&nbsp;&nbsp;&nbsp;容：
