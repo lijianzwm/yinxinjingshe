@@ -6,6 +6,25 @@
     <title>{$news.title}</title>
 </head>
 <body>
+<style>
+    /*img{*/
+        /*max-width:170px;*/
+        /*width:170px;*/
+        /*width:expression(document.body.clientWidth>170?"170px":"auto");*/
+        /*max-height:180px;*/
+        /*height:180px;*/
+        /*height:expression(document.body.clientWidth>180?"180px":"auto");*/
+        /*overflow:hidden;*/
+    /*}*/
+
+    img{
+        max-width:100%;
+        width: auto;
+    }
+
+</style>
+
+
 <div>
     {$news.title}
 </div>
