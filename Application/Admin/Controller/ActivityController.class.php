@@ -90,6 +90,7 @@ class ActivityController extends CommonController{
         $news["img_name"] = $activity["img_name"];
         $news["author"] = $activity["sponsor"];
         $news["abstract"] = $activity["activity_name"];
+        $news["news_type"] = C("PUSHED_ACTIVITY");
         $activityModel->startTrans();//开启事务
         $newsId = $newsModel->add($news);
         if( $newsId ){
@@ -99,6 +100,7 @@ class ActivityController extends CommonController{
             if( $activityModel->save($activity) ){
                 $activityModel->commit();
                 $this->assign("news", $news);
+                $this->assign("imgName", C("ABS_IMAGE_PATH").$activity["img_name"] );
                 $this->display();
             }else{
                 $activityModel->rollback();

@@ -254,7 +254,7 @@
 	</div>-->
 	
 		<ul class="content listView">
-			<li tapmode="" onclick="">
+			<!--<li tapmode="" onclick="">
 				<div class="item">
 					<div class="img"><img src="http://www.yxjs.org/shouye.jpg"></div>
 					<div class="text">
@@ -275,7 +275,7 @@
 							我是子标题
 					</div>
 				</div>
-			</li>
+			</li>-->
 		</ul>
 		<section id="moreData">
 		
@@ -302,7 +302,7 @@
 			function renderList( pageId ){
 //				apifind = function(){
 					api.ajax({
-						url : 'http://yinxinjingshe.applinzi.com/Api/News/renderList',
+						url : 'http://101.200.169.247/Api/News/renderList',
 						method : 'post',
 						dataType:'json',
 						data : {
@@ -318,7 +318,7 @@
 				if (ret) {
 			        var listHtml = '';
 			        for (var i in ret){
-			            var imgUrl = "../image/92.png";
+			            var imgUrl = "http://101.200.169.247/Upload/Image/"+ret[i].img_name;
 			            var title = ret[i].title;
 			            var subTitle = ret[i].content;
 			            var detailId = ret[i].id;

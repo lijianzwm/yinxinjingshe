@@ -15,7 +15,7 @@ use \Common\Service;
 class NewsController extends Controller{
 
     public function renderList(){
-        $limit = 3;
+        $limit = C("NEWS_PER_PAGE");
         $page = I("page");
         $service = new \Common\Service\NewsService();
         echo json_encode($service->renderNewsList($page, $limit));
