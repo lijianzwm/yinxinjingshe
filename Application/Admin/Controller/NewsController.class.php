@@ -37,12 +37,13 @@ class NewsController extends CommonController{
         $newsId = I("id");
         if( $newsId ){//如果id被传过来了，就是修改news
             $news = NewsService::getNews($newsId);
+            $imgName = $news['img_name'];
             $this->assign("imgInit", C("ABS_IMAGE_PATH").$news['img_name']);
         }else{
             $news = $this->getEmptyNews();
+            $imgName = md5(uniqid(rand())).".jpg";
             $this->assign("imgInit",C("IMG_NO_PIC"));
         }
-        $imgName = md5(uniqid(rand())).".jpg";
         $this->assign("imgViewPath", C("ABS_IMAGE_PATH").$imgName);
         $this->assign("tmpImgName", "tmp_".$imgName);//上传完整图的名称
         $this->assign("imgName", $imgName);//图片截取后的名称
@@ -56,9 +57,7 @@ class NewsController extends CommonController{
         $data['author'] = I("author");
         $data['img_name'] = I("img");
         $data['abstract'] = I("abstract");
-        $data['content'] = I("content");
-        $imgTmpFile = I("imgTmpFile");//暂存的图片文件
-        $imgData = C("IMAGE_PATH").$data['img_name'];//永久保存的图片文件
+        $data['content'] = $this->addUeditorImgName(I("content"));
         if ($id == C("NEW_NEWS")) {//如果是插入news
             if (M("news")->add($data)) {
                 $this->success("添加推送成功！", U('newsList'));
@@ -70,7 +69,8 @@ class NewsController extends CommonController{
             if( M("news")->save($data)){
                 $this->success("修改推送成功！", U('newsList'));
             }else{
-                $this->error("当前推送未被修改！");
+                //TODO 添加判断图片是否被修改的代码
+                $this->success("修改推送成功！", U('newsList'));
             }
         }
     }
@@ -158,6 +158,14 @@ class NewsController extends CommonController{
         $thumbPath = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
         ImageService::thumb(870, $thumbPath, $thumbPath);
         echo "<textarea><img src='{$absPath}' id='cropbox' /></textarea>";
+    }
+
+    /**
+     * 为ueditor插入的图片img标签添加统一的name，方便进行图片自适应
+     * @param $content
+     */
+    private function addUeditorImgName($content){
+        return str_replace("&lt;img","&lt;img name=&quot;".C("UEDITOR_IMG_NAME")."&quot;",$content);
     }
 
 }

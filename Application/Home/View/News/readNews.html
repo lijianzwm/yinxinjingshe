@@ -6,16 +6,15 @@
     <title>{$news.title}</title>
 </head>
 <body>
-<table>
-    <tr>
-        <td>{$news.title}</td>
-    </tr>
-    <tr>
-        <td>{$news.author}</td>
-    </tr>
-    <tr>
-        <td>{$news.content}</td>
-    </tr>
-</table>
+<div>
+    {$news.title}
+</div>
+<div>
+    {$news.author}
+</div>
+<div style="overflow:hidden; width:90%;">
+    {$news.content}
+</div>
+
 </body>
 </html>
