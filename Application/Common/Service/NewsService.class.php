@@ -11,7 +11,11 @@ namespace Common\Service;
 
 class NewsService{
     public function renderNewsList( $page, $limit ){
-        return M("news")->order("create_time desc")->page($page,$limit)->select();
+        $newsList = M("news")->order("create_time desc")->page($page,$limit)->select();
+        foreach ($newsList as $item) {
+            $item['img_name'] = C("ABS_IMAGE_PATH").$item['img_name'];
+        }
+        return $newsList;
     }
 
     public static function getNews( $id ){

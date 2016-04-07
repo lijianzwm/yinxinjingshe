@@ -90,7 +90,7 @@
 <header>
     <div class="header detail-header">
         <div class="btn back" tapmode="" onclick="api.closeWin()"></div>
-        <div class="title" id="title">新闻详情</div>
+        <div class="title" id="title">详情</div>
     </div>
 </header>
 <div class="content">
@@ -101,7 +101,7 @@
 <script>
     apiready = function () {
         var $headerH = $("header").height();
-        var detailUrl = "http://yinxinjingshe.applinzi.com/Home/News/readNews?id=" + api.pageParam.id;
+        var detailUrl = "http://101.200.169.247/Home/News/readNews?id=" + api.pageParam.id;
         api.openFrame({
             name: 'detail-con',
             url: detailUrl,
