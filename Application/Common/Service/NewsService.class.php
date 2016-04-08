@@ -24,4 +24,15 @@ class NewsService{
         return $news;
     }
 
+    public static function getEmptyNews(){
+        $news["id"] = C("NEW_NEWS");//当id为-1时，表示新插入数据
+        $news['title'] = "";
+        $news['author'] = "";
+        $news['abstract'] = "";
+        $news['content'] = "";
+        $news['create_time'] = date('y-m-d h:i:s',time());
+        $news['img_name'] = md5(uniqid(rand()));
+        return $news;
+    }
+
 }

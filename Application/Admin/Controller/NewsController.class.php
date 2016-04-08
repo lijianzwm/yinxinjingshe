@@ -12,7 +12,7 @@ use Common\Service\ImageService;
 
 class NewsController extends CommonController{
     public function newsList(){
-        $itemNumPerPage = 3;
+        $itemNumPerPage = C("NEWS_PER_PAGE");
         $news = M("news");
         $count = $news->count();
         $Page = new \Think\Page($count,$itemNumPerPage);
@@ -23,16 +23,6 @@ class NewsController extends CommonController{
         $this->display();
     }
 
-    private function getEmptyNews(){
-        $news["id"] = C("NEW_NEWS");//当id为-1时，表示新插入数据
-        $news['title'] = "";
-        $news['author'] = "";
-        $news['abstract'] = "";
-        $news['content'] = "";
-        $news['img_name'] = md5(uniqid(rand()));
-        return $news;
-    }
-
     public function editNews(){
         $newsId = I("id");
         if( $newsId ){//如果id被传过来了，就是修改news
@@ -40,7 +30,7 @@ class NewsController extends CommonController{
             $imgName = $news['img_name'];
             $this->assign("imgInit", C("ABS_IMAGE_PATH").$news['img_name']);
         }else{
-            $news = $this->getEmptyNews();
+            $news = NewsService::getEmptyNews();
             $imgName = md5(uniqid(rand())).".jpg";
             $this->assign("imgInit",C("IMG_NO_PIC"));
         }
@@ -57,7 +47,7 @@ class NewsController extends CommonController{
         $data['author'] = I("author");
         $data['img_name'] = I("img");
         $data['abstract'] = I("abstract");
-        $data['content'] = $this->addUeditorImgName(I("content"));
+        $data['content'] = I("content");
         if ($id == C("NEW_NEWS")) {//如果是插入news
             if (M("news")->add($data)) {
                 $this->success("添加推送成功！", U('newsList'));
@@ -77,8 +67,10 @@ class NewsController extends CommonController{
 
     public function deleteNews(){
         $newsId = I("newsId");
+        $news = M("news")->where("id=$newsId")->find();
         $json = null;
         if( M("news")->where("id=$newsId")->delete()){
+             unlink(C("IMAGE_PATH").$news['img_name'] );
              $json['msg'] = true;
              $json['hint'] = "删除成功！";
         }else{
@@ -131,41 +123,6 @@ class NewsController extends CommonController{
             $json['hint'] = "该推送未被置顶！";
         }
         echo json_encode($json);
-    }
-
-    /**
-     * Jcrop截图处理后台
-     */
-    public function jcrop(){
-        $image = new \Think\Image();
-        $tmpImagePath =  C("TMP_PATH").I("tmpImgName");
-        $imagePath =  C("IMAGE_PATH").I("imgName");
-        $jcropWidth = C("JCROP_IMAGE_WIDTH");
-        $jcropHeight = C("JCROP_IMAGE_HEIGHT");
-        $image->open($tmpImagePath);
-        $image->crop($_POST['w'],$_POST['h'],$_POST['x'],$_POST['y'])
-            ->thumb($jcropWidth,$jcropHeight,\Think\Image::IMAGE_THUMB_FIXED)->save($imagePath);
-        unlink($tmpImagePath);
-        $ret['error_code'] = 0;
-        echo json_encode($ret);
-    }
-
-    public function uploadHandler(){
-        $tmpImgName = I("tmpImgName");
-        $path = iconv('utf-8','gb2312',"Upload/tmp/".$tmpImgName);
-        $absPath = C("ABS_TMP_PATH").$tmpImgName;
-        move_uploaded_file($_FILES['upload_file']['tmp_name'], $path);
-        $thumbPath = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
-        ImageService::thumb(870, $thumbPath, $thumbPath);
-        echo "<textarea><img src='{$absPath}' id='cropbox' /></textarea>";
-    }
-
-    /**
-     * 为ueditor插入的图片img标签添加统一的name，方便进行图片自适应
-     * @param $content
-     */
-    private function addUeditorImgName($content){
-        return str_replace("&lt;img","&lt;img name=&quot;".C("UEDITOR_IMG_NAME")."&quot;",$content);
     }
 
 }
