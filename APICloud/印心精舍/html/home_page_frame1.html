@@ -323,7 +323,7 @@
 			            var subTitle = ret[i].abstract;
 			            var detailId = ret[i].id;
 			            listHtml += 
-				            '<li tapmode="" onclick="toDetail(' + detailId + ')">' + 
+				            '<li tapmode="" onclick="toDetail(' + detailId +', \''+ title + '\')">' + 
 								'<div class="item">'+
 									'<div class="img"><img src='+imgUrl+'></div>'+
 									'<div class="text">'+
@@ -338,12 +338,13 @@
 				}
 			    $("#moreData").append('<ul class="content listView">'+listHtml+'</ul>');
 			}
-		    function toDetail(detailId) {
+		    function toDetail(detailId,title) {
 		        api.openWin({
 		            name: 'detail',
 		            url: 'win_newsDetail.html',
 			    	pageParam: {
-				        id : detailId
+				        id : detailId,
+				        newsTitle : title
 				    }
 		        });
 		    }

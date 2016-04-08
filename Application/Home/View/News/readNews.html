@@ -22,18 +22,16 @@
         width: auto;
     }
 
+    #inscription{
+        text-align:right;
+    }
+
 </style>
-
-
-<div>
-    {$news.title}
-</div>
-<div>
-    {$news.author}
-</div>
 <div>
     {$news.content}
 </div>
-
+<div id="inscription">
+    本文由 {$news.author} 编辑推送
+</div>
 </body>
 </html>

@@ -102,6 +102,7 @@
     apiready = function () {
         var $headerH = $("header").height();
         var detailUrl = "http://101.200.169.247/Home/News/readNews?id=" + api.pageParam.id;
+        document.getElementById("title").innerHTML = api.pageParam.newsTitle;
         api.openFrame({
             name: 'detail-con',
             url: detailUrl,
