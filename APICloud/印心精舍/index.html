@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <style>
         header{ background-color: #f2f2f2; }
-        header ul li { height: 20px; line-height: 10px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
+        header ul li { height: 25px; line-height: 10px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
         header ul li.active{ display: block; }
         #footer{  background-color: #f2f2f2; }
         #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
@@ -21,17 +21,29 @@
         #footer ul li:nth-child(2).active{ background-image: url(./image/bottombtn0202.png); }
         #footer ul li:nth-child(3).active{ background-image: url(./image/bottombtn0302.png); }
         #footer ul li:nth-child(4).active{ background-image: url(./image/bottombtn0402.png); }
+        
+        
+        .index-header{
+		    background-color: #DC3237;
+		    border-bottom: 1px solid #E5E5E5;
+		    -webkit-box-pack: center;
+		    -webkit-box-align: center;
+		}
+        
     </style>
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
+    
+<!--        <div class=" header index-header">
+			<div>印心精舍</div>
+    	</div>-->
+
         <ul>
             <li class="border-b active" >印心精舍</li>
-<!--            <li class="border-b" >端API</li>
-            <li class="border-b" >开发</li>
-            <li class="border-b" >文档</li>-->
         </ul>
+        
     </header>
     <div id="main" class="flex-con">
 
@@ -51,6 +63,7 @@
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript">
     apiready = function () {
+		$api.fixIos7Bar($api.dom('header'));
         $api.fixStatusBar( $api.dom('header') );
         api.setStatusBarStyle({
             style: 'dark',

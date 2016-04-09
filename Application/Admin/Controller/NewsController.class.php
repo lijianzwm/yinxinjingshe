@@ -12,7 +12,7 @@ use Common\Service\ImageService;
 
 class NewsController extends CommonController{
     public function newsList(){
-        $itemNumPerPage = 3;
+        $itemNumPerPage = C("NEWS_PER_PAGE");
         $news = M("news");
         $count = $news->count();
         $Page = new \Think\Page($count,$itemNumPerPage);
@@ -23,26 +23,17 @@ class NewsController extends CommonController{
         $this->display();
     }
 
-    private function getEmptyNews(){
-        $news["id"] = C("NEW_NEWS");//当id为-1时，表示新插入数据
-        $news['title'] = "";
-        $news['author'] = "";
-        $news['abstract'] = "";
-        $news['content'] = "";
-        $news['img_name'] = md5(uniqid(rand()));
-        return $news;
-    }
-
     public function editNews(){
         $newsId = I("id");
         if( $newsId ){//如果id被传过来了，就是修改news
             $news = NewsService::getNews($newsId);
+            $imgName = $news['img_name'];
             $this->assign("imgInit", C("ABS_IMAGE_PATH").$news['img_name']);
         }else{
-            $news = $this->getEmptyNews();
+            $news = NewsService::getEmptyNews();
+            $imgName = md5(uniqid(rand())).".jpg";
             $this->assign("imgInit",C("IMG_NO_PIC"));
         }
-        $imgName = md5(uniqid(rand())).".jpg";
         $this->assign("imgViewPath", C("ABS_IMAGE_PATH").$imgName);
         $this->assign("tmpImgName", "tmp_".$imgName);//上传完整图的名称
         $this->assign("imgName", $imgName);//图片截取后的名称
@@ -57,8 +48,6 @@ class NewsController extends CommonController{
         $data['img_name'] = I("img");
         $data['abstract'] = I("abstract");
         $data['content'] = I("content");
-        $imgTmpFile = I("imgTmpFile");//暂存的图片文件
-        $imgData = C("IMAGE_PATH").$data['img_name'];//永久保存的图片文件
         if ($id == C("NEW_NEWS")) {//如果是插入news
             if (M("news")->add($data)) {
                 $this->success("添加推送成功！", U('newsList'));
@@ -70,15 +59,18 @@ class NewsController extends CommonController{
             if( M("news")->save($data)){
                 $this->success("修改推送成功！", U('newsList'));
             }else{
-                $this->error("当前推送未被修改！");
+                //TODO 添加判断图片是否被修改的代码
+                $this->success("修改推送成功！", U('newsList'));
             }
         }
     }
 
     public function deleteNews(){
         $newsId = I("newsId");
+        $news = M("news")->where("id=$newsId")->find();
         $json = null;
         if( M("news")->where("id=$newsId")->delete()){
+             unlink(C("IMAGE_PATH").$news['img_name'] );
              $json['msg'] = true;
              $json['hint'] = "删除成功！";
         }else{
@@ -131,33 +123,6 @@ class NewsController extends CommonController{
             $json['hint'] = "该推送未被置顶！";
         }
         echo json_encode($json);
-    }
-
-    /**
-     * Jcrop截图处理后台
-     */
-    public function jcrop(){
-        $image = new \Think\Image();
-        $tmpImagePath =  C("TMP_PATH").I("tmpImgName");
-        $imagePath =  C("IMAGE_PATH").I("imgName");
-        $jcropWidth = C("JCROP_IMAGE_WIDTH");
-        $jcropHeight = C("JCROP_IMAGE_HEIGHT");
-        $image->open($tmpImagePath);
-        $image->crop($_POST['w'],$_POST['h'],$_POST['x'],$_POST['y'])
-            ->thumb($jcropWidth,$jcropHeight,\Think\Image::IMAGE_THUMB_FIXED)->save($imagePath);
-        unlink($tmpImagePath);
-        $ret['error_code'] = 0;
-        echo json_encode($ret);
-    }
-
-    public function uploadHandler(){
-        $tmpImgName = I("tmpImgName");
-        $path = iconv('utf-8','gb2312',"Upload/tmp/".$tmpImgName);
-        $absPath = C("ABS_TMP_PATH").$tmpImgName;
-        move_uploaded_file($_FILES['upload_file']['tmp_name'], $path);
-        $thumbPath = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
-        ImageService::thumb(870, $thumbPath, $thumbPath);
-        echo "<textarea><img src='{$absPath}' id='cropbox' /></textarea>";
     }
 
 }

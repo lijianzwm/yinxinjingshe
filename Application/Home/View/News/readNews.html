@@ -6,16 +6,32 @@
     <title>{$news.title}</title>
 </head>
 <body>
-<table>
-    <tr>
-        <td>{$news.title}</td>
-    </tr>
-    <tr>
-        <td>{$news.author}</td>
-    </tr>
-    <tr>
-        <td>{$news.content}</td>
-    </tr>
-</table>
+<style>
+    /*img{*/
+        /*max-width:170px;*/
+        /*width:170px;*/
+        /*width:expression(document.body.clientWidth>170?"170px":"auto");*/
+        /*max-height:180px;*/
+        /*height:180px;*/
+        /*height:expression(document.body.clientWidth>180?"180px":"auto");*/
+        /*overflow:hidden;*/
+    /*}*/
+
+    img{
+        max-width:100%;
+        width: auto;
+    }
+
+    #inscription{
+        text-align:right;
+    }
+
+</style>
+<div>
+    {$news.content}
+</div>
+<div id="inscription">
+    本文由 {$news.author} 编辑推送
+</div>
 </body>
 </html>

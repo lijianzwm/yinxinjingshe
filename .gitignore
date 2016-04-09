@@ -9,3 +9,6 @@
 
 #忽略APICloud的metadata文件夹
 /APICloud/.metadata/*
+
+#忽略Upload
+/Upload
