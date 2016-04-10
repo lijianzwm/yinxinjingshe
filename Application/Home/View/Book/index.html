@@ -106,7 +106,7 @@
 			    width:100%;
 			    background:#000;
 			    opacity:0.9;
-			    z-index:10000;
+			    z-index:10003;
 			}
 			
 			.nav-pannel{
@@ -116,7 +116,7 @@
 			    width:100%;
 			    background:none;
 			    color:#fff;
-			    z-index:10001;
+			    z-index:10004;
 			}
 			
 			.child-mod{
@@ -397,7 +397,11 @@
 			    
 			    var Win = $(window);
 			    var Doc = $(document);
-			    
+				var initFontSize = parseInt(Util.StorageGetter('font_ize'));
+				if( !initFontSize ){
+					initFontSize = 14;
+				}
+
 			    function main(){
 			        //todo 整个项目的入口函数
 			        EventHandler();
@@ -420,6 +424,8 @@
 			            }else{
 			                Dom.bottom_nav.hide();
 			                Dom.top_nav.hide();
+							Dom.font_button.removeClass('current');
+							Dom.font_container.hide();
 			            }
 			        });
 
@@ -436,11 +442,28 @@
 					$('#night-button').click(function(){
 
 					});
+
+					$('#large-font').click(function(){
+						if( initFontSize < 20 ){
+							initFontSize += 1;
+							$('#fiction_container').css('font-size', initFontSize);
+							Util.StorageSetter('font_size', initFontSize);
+						}
+					});
+
+					$('#small-font').click(function(){
+						if( initFontSize > 10 ){
+							initFontSize -= 1;
+							$('#fiction_container').css('font-size', initFontSize);
+							Util.StorageSetter('font_size', initFontSize);
+						}
+					});
 			        
 			        Win.scroll(function(){
 		                Dom.bottom_nav.hide();
 		                Dom.top_nav.hide();
 						Dom.font_container.hide();
+						Dom.font_button.removeClass('current');
 			        });
 			        
 			    }
