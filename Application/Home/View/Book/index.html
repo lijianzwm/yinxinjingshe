@@ -425,8 +425,10 @@
 
 			    var Win = $(window);
 			    var Doc = $(document);
-				var initFontSize = parseInt(Util.StorageGetter('font_ize'));
-				if( !initFontSize ){
+				var initFontSize = parseInt(Util.StorageGetter('font_size'));
+				if( initFontSize ){
+					$('#fiction_container').css('font-size', initFontSize);
+				}else{
 					initFontSize = 14;
 				}
 				var isNight = parseInt(Util.StorageGetter('is_night'));
