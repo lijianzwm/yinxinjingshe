@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书架</title>
+</head>
+<body>
+<table>
+    <foreach name="bookList" item="book">
+        <tr><td>
+            <a href="{:U('Book/chapterList', array('id'=>$book['id']))}">{$book.name}</a>
+        </td></tr>
+    </foreach>
+</table>
+</body>
+</html>
