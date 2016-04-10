@@ -19,6 +19,10 @@
                 overflow:hidden;
                 background:#e9dfc7;
             }
+
+			.body-night{
+				background:#000000;
+			}
             
             .m-read-content{
                 font-size: 14px;
@@ -41,6 +45,10 @@
                 letter-spacing:0px;
                 line-height:24px;
             }
+
+			.m-read-content-night{
+				color:#737373;
+			}
             
             .u-tab {
                 height:34px;
@@ -239,6 +247,10 @@
 				background-size: contain;
 			}
 
+			.hide{
+				display:none;
+			}
+
 			.item-warp {
 				width: 26px;
 				margin: 0 auto;
@@ -350,7 +362,7 @@
 					</div>
 				</div>
 				<div class="item" id="night-button">
-					<div class="item-warp" style="display:none" id="day_icon">
+					<div class="item-warp hide" id="day_icon">
 						<div class="icon-day"></div>
 						<div class="icon-text">
 							白天
@@ -440,7 +452,19 @@
 					});
 
 					$('#night-button').click(function(){
-
+						if( $('#day_icon').css('display') == 'none' ){
+							//切换到夜间模式
+							$('#night_icon').addClass('hide');
+							$('#day_icon').removeClass('hide');
+							$('#fiction_container').addClass('m-read-content-night');
+							$('body').addClass('body-night');
+						}else{
+							//切换到白天模式
+							$('#day_icon').addClass('hide');
+							$('#night_icon').removeClass('hide');
+							$('#fiction_container').removeClass('m-read-content-night');
+							$('body').removeClass('body-night');
+						}
 					});
 
 					$('#large-font').click(function(){
