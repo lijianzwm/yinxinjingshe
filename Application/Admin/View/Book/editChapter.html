@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = '__PUBLIC__/Ueditor/';
+    window.onload = function(){
+        window.UEDITOR_CONFIG.initialFrameHeight=300;//编辑器的高度
+        ue = UE.getEditor('content');
+        //判断ueditor 编辑器是否创建成功
+        ue.addListener("ready", function () {
+            // editor准备好之后才可以使用
+            ue.setContent('{$chapter.content}');
+        });
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>编辑章节</title>
+</head>
+<body>
+<form action="{:U('Book/editChapterHandler')}" method="post">
+    <table>
+        <tr><td>{$bookName}</td></tr>
+        <tr><td><input type="hidden" name="id" value="{$chapter.id}"/></td></tr>
+        <tr><td><input type="hidden" name="bookId" value="{$bookId}"/></td></tr>
+        <tr><td>
+            章节标题：<input name="title" value="{$chapter.title}"/>
+        </td></tr>
+        <tr><td>
+            章节序号：<input name="num" value="{$chapter.num}"/>
+        </td></tr>
+        <tr><td>
+            章节内容：<textarea id="content" name="content">{$chapter.content}</textarea>
+        </td></tr>
+        <tr><td>
+            <input type="submit" value="提交"/>
+        </td></tr>
+    </table>
+</form>
+</body>
+</html>

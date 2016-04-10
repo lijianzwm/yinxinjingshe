@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>章节列表</title>
+</head>
+<body>
+    <table>
+        <tr><td>{$bookName}</td></tr>
+        <tr><td>
+            <a href="{:U('Book/addChapter', array('bookName'=>$bookName, 'bookId'=>$bookId))}">添加章节</a>
+        </td></tr>
+        <foreach name="chapterList" item="chapter">
+            <tr>
+                <td>{$chapter.num}</td>
+                <td>{$chapter.title}</td>
+                <td><a href="{:U('Book/modifyChapter', array('id'=>$chapter['id'], 'bookName'=>$bookName, 'bookId'=>$bookId))}">修改&nbsp;&nbsp;</a></td>
+                <td><a href="{:U('Book/deleteChapter', array('id'=>$chapter['id']))}">删除</a></td>
+            </tr>
+        </foreach>
+    </table>
+</body>
+</html>
