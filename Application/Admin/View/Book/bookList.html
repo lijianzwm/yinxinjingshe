@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>书籍列表</title>
+</head>
+<body>
+<div>
+    <table>
+        <tr><td><a href="{:U('Book/addBook')}">添加书籍</a></td></tr>
+        <foreach name="bookList" item="book">
+            <tr>
+                <td>{$book.name}</td>
+                <td>{$book.author}</td>
+                <td><a>修改</a></td>
+            </tr>
+        </foreach>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
