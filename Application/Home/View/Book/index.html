@@ -406,12 +406,34 @@
 					font_container:$('.font-container'),
 					font_button:$('#font-button')
 			    };
-			    
+
+				function switchNightMode(){
+					$('#night_icon').addClass('hide');
+					$('#day_icon').removeClass('hide');
+					$('#fiction_container').addClass('m-read-content-night');
+					$('body').addClass('body-night');
+					Util.StorageSetter('is_night', 1);
+				}
+
+				function switchDayMode(){
+					$('#day_icon').addClass('hide');
+					$('#night_icon').removeClass('hide');
+					$('#fiction_container').removeClass('m-read-content-night');
+					$('body').removeClass('body-night');
+					Util.StorageSetter('is_night', 0);
+				}
+
 			    var Win = $(window);
 			    var Doc = $(document);
 				var initFontSize = parseInt(Util.StorageGetter('font_ize'));
 				if( !initFontSize ){
 					initFontSize = 14;
+				}
+				var isNight = parseInt(Util.StorageGetter('is_night'));
+				if( isNight ){
+					switchNightMode();
+				}else{
+					isNight = 0;
 				}
 
 			    function main(){
@@ -453,17 +475,9 @@
 
 					$('#night-button').click(function(){
 						if( $('#day_icon').css('display') == 'none' ){
-							//切换到夜间模式
-							$('#night_icon').addClass('hide');
-							$('#day_icon').removeClass('hide');
-							$('#fiction_container').addClass('m-read-content-night');
-							$('body').addClass('body-night');
+							switchNightMode();
 						}else{
-							//切换到白天模式
-							$('#day_icon').addClass('hide');
-							$('#night_icon').removeClass('hide');
-							$('#fiction_container').removeClass('m-read-content-night');
-							$('body').removeClass('body-night');
+							switchDayMode();
 						}
 					});
 
