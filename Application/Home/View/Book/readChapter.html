@@ -66,8 +66,8 @@
             line-height: 34px;
             border-radius:8px;
             border:1px solid #858382;
-            font-size: 12px;
-            background:#000;
+            font-size: 14px;
+            background:#e9dfc7;
             opacity:0.9;
         }
 
@@ -76,7 +76,7 @@
             width:49%;
             border-right:1px solid #858382;
             text-align:center;
-            color:#fff;
+            color:#9B410E;
             cursor:pointer;
         }
 
@@ -321,7 +321,7 @@
         <div id="chapter_content"></div>
     </div>
     <div id="m_button_bar" class="m-button-bar">
-        <ul class="u-tab">
+        <ul class="u-tab" id="page_bar">
             <li id="prev_button" >上一章</li>
             <li id="next_button" >下一章</li>
         </ul>
@@ -420,6 +420,9 @@
             $('#day_icon').removeClass('hide');
             $('#fiction_container').addClass('m-read-content-night');
             $('body').addClass('body-night');
+            $('#page_bar').css('background', '#000');
+            $('#prev_button').css('color','#fff');
+            $('#next_button').css('color','#fff');
             Util.StorageSetter('is_night', 1);
         }
 
@@ -428,6 +431,9 @@
             $('#night_icon').removeClass('hide');
             $('#fiction_container').removeClass('m-read-content-night');
             $('body').removeClass('body-night');
+            $('#page_bar').css('background', '#e9dfc7');
+            $('#prev_button').css('color','#9B410E');
+            $('#next_button').css('color','#9B410E');
             Util.StorageSetter('is_night', 0);
         }
 
