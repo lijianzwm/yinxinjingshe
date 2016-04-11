@@ -56,7 +56,7 @@
     <title>书架</title>
 </head>
 <body>
-    <div class="shelf-title">心密文库</div>
+    <div class="shelf-title">心密文集</div>
     <foreach name="bookList" item="book">
         <div class="book-item">
             <a href="{:U('Book/readChapter', array('bookId'=>$book['id'],'num'=>'1'))}">《{$book.name}》</a>
