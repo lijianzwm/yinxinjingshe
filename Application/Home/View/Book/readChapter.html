@@ -24,18 +24,19 @@
             background:#000000;
         }
 
-        .m-read-content{
-            font-size: 14px;
-            color:#555;
-            line-height:31px;
-            padding:15px;//让内容看起来不是那么挤
-        }
+        /*.m-read-content{*/
+            /*font-size: 14px;*/
+            /*color:#555;*/
+            /*line-height:31px;*/
+            /*padding:15px;//让内容看起来不是那么挤*/
+        /*}*/
 
         .m-read-content h4{
             font-size: 20px;
             color:#736357;
             border-bottom:solid 1px #736357;
             letter-spacing:2px;
+            line-height:40px;
             margin:0 0 1em 0;
         }
 
@@ -43,7 +44,16 @@
             text-indent: 2em;
             margin:0.5em 0;
             letter-spacing:0px;
-            line-height:24px;
+            padding:15px;
+        }
+
+        .index-container{
+            text-indent: 2em;
+            margin:0.5em 0;
+            letter-spacing:0px;
+            padding:15px;
+            font-size: 20px;
+            line-height: 1.5;
         }
 
         .m-read-content-night{
@@ -56,8 +66,8 @@
             line-height: 34px;
             border-radius:8px;
             border:1px solid #858382;
-            font-size: 12px;
-            background:#000;
+            font-size: 14px;
+            background:#e9dfc7;
             opacity:0.9;
         }
 
@@ -66,7 +76,8 @@
             width:49%;
             border-right:1px solid #858382;
             text-align:center;
-            color:#fff;
+            color:#9B410E;
+            cursor:pointer;
         }
 
         .u-tab li:nth-child(2){
@@ -97,6 +108,7 @@
             height:23px;
             background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkJGMkEyQkQxMjdBNDExRTU4NjA2QTJDMjFDQ0I0ODhEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkJGMkEyQkQyMjdBNDExRTU4NjA2QTJDMjFDQ0I0ODhEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QkYyQTJCQ0YyN0E0MTFFNTg2MDZBMkMyMUNDQjQ4OEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QkYyQTJCRDAyN0E0MTFFNTg2MDZBMkMyMUNDQjQ4OEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ia560AAAHWklEQVR42uyd7W9URRTGDwu0lFL6IkiBCpQKBpUKJCIETURFxZL4sdao8YN+0D/IL2pilFD8aCJgQAE1KGhSkCqEl1KUSguU0gIV6ELredJn2unC7V5298596Z7kyb27odw7vzsz98yZmbPTRkZGJESbrVqoekQ1j6rg9zNVJap7qiHVbR4HVb3UVVW36r+wCjDNMUBAWa6qVy1TLcA95Pl/ogCXVOdVnapzqnSSAAJQg2qNaiVrlTEU9KLqCmsTatX1jBon/JtZPM5lTTW1djEfjDH8zWnVMVUHAccSIAq7TrVBVWV9/6/qDGtMl+punteZoapjjV5BoMb6VYdVbdbDiDxA1Ib1qk3sy2ADrBHtrGVBGmrlatb4Sn6HPvKQ6rdCN+9CA3xatcW68R7Vz6oTQTclj67jSdXzfFGZB7lP9WfUAKKJblM9boHbz6Ya6mueING0N1sgz6q+ZRMPHWCjqklVyo7/gOp31bBEy1KqZwkSL6Q7ql2q42EBnEFwa/kZzXSP6oZE2+BnbmXzhh0lyLsuAZar3lI9xk55D990cTI8+Df40rug2kknPXCA1ap3VTXsQ3ayz4uj1aqaWaY+1Veqa0ECnK96j80A/lyr6qbE2+aoWug/ovv5ko59wQGixr3PkUAn4Q1JMqyEEOs5EvqCNdLXm8lvn/eOBW9HguCZ4d8Olm0uy1peKIDT+XRqOPRqdTlYd2hplq2LZW2hp5E3wCaONa8lrNl61cRWlrWOb+m8ADYyIICn83Uur/kY2iDLmmbZG3MFWMXaJ/TzemTqWA/LbFpgVS4At3F4diKGTnIhrI1lLyULz+GYV1QFgYFbHObkZndvuynqjFlB/c+76NqABUJk7X5qIIY2W3i+b4r0e5P1h/t4/opMjHx7AkQwFPG8bg60o2JL2S9d5rHO0XXB4CKZrM8GEB75Jp7/IOHH8owtU/2oep3DSRw/d3RtMDjI800ycU7nPoCIUCAM/4+MBh2jAu8ga6Btmx3ewxm+mWfLePjuPoCI3G7g+S8Rhwf71eF9oBb+xPONYk3F2gAbGNaBF34q4vBQGz5wfD8nyaaKrO4DuMbyf0YiDu8lNitxXAvbMliNAcTreSX/UXsM4J0M6d6Ok9HYAoGU1XzxBYKk/UV4njbAaA1YLbcBmunI00V4vt7IY8wMwHoeO4rwslqHzQwAEXnFQp0hjj6K8Ca3brICs3IANLP16P+Gi/Cy2jBZwRYBYC0/XHJ8I/UxhCcZrBYAYA0/9DqGdyCm8GxWNSmOPsSh+xJ3eCLjk+/VAFhh+ThFeP7sOo8VAFjGD7eK8HybYVUGgCasH+Rc75IEwbNZzQTAUn64E+AFP00QPJtVCQDe44fpAV7wOY/vP44hvAmWsmiWBnidIx7ff6JaFUNuhtVQSibuxQjKPlT9/YDv4cTvjyFEMzuXdlUDMceyOUEQxzwXADT7zCoCvmhngiDO5fFmyvKqqxxcOCkQzeitDwDNSsx5ji6eBIjzbIBm1dUChzcQd4iG1SUANEHUxeJ/ye9UhpiS8Q2NF/FhkM0YbsxCxzcTR4i1ZIXtuYMpqyCwhhBuKG4QG2xmBqCZaVoR0k3FCeJKHs/aAM9xRIIlY5VFiJ5WSUZDZDYG0GyTx6KZxhBvMOoQG8notBkC22/dYzyuk/wTQSQR4jSysVlNAIgJ43562U+E3FT8QHTdX68im36xFiDYALFoxqy52xiBzjobxM8c174XeH5YrNVrmY7zUQYXlobk0jwMRJcPeQV9ZLBpy/SqbUPHeIjnL4fcF2aDeMBh7XuR54ckY6vbg4ZuSA2CKc5FkrEeOGSIKMReGZ3UxtHVCtW1ZDFANpINIGacvuc59kaURwTiedVrMrpKH8cLDq5ZTgZCJmk/AGHt9LSxKr1Jpq41kUGHeKzcnWw/LPKqfCSj2S3WSS775YLbguWq6aLsd8jCMzTjZfB3dvN8q4yv4poKhrKavcJgcC0XgLA/WPMwC9Ucof4w6H6vmWU+SgaSK0DzBLrohWMbfEmC4ZnkE9Usc9adqn4AIqMPtsH3MRLRIg/YtZgAm8my1bGsreIjm5HfED6i1ttldFkXVlm9nbCaWMIymbQn28XnNt9cEu8gJQjiYklJvFNOeIvpLANeIIl3jFUS4ny+nZCgIQmpn64Q3kMtNM01+VgZn5pJPrZborU526+fZycfQ+Kdh15kmm/6u1dlfBf3X6rvJPrp7+bQr33KGvvvFcfp72xDoPFNGU1qGKcEjLjXbyTP9YlBpQDt5uC7IyLwsDEQiTQimQLUttWMXpiZPSxrQwwNkzBhJKHFFCTyHCzhdwN8sAXb0usqDXI/h0TYb3s1YHDYw4bZs2dkfMUZIslIY3BEIp4G2bZSvukyE3F3sQl18vxenteZztGDSZBTlxEQOUwPIZBF9FFIBQ+H3PywQC8LfYsFThPQlEwF79W8zY8RQI9KYX6M4DJrdCJ/jCDbMKpWJv85DFOr0uzLbsjEn8PokRDTU/0vwACwczOmB6btAwAAAABJRU5ErkJggg==);
             background-size:contain;
+            cursor:pointer;
         }
 
         .nav-title{
@@ -104,7 +116,6 @@
             top:16px;
             left:42px;
             color:#d5d5d6;
-
         }
 
         .nav-pannel-bk{
@@ -216,6 +227,7 @@
         .icon-night, .icon-day, .icon-ft {
             left: 1px;
         }
+
         .icon-ft {
             width: 20px;
             height: 13px;
@@ -251,6 +263,10 @@
             display:none;
         }
 
+        .show{
+            display:block;
+        }
+
         .item-warp {
             width: 26px;
             margin: 0 auto;
@@ -266,30 +282,48 @@
             color:#000;
         }
 
+        .back-to-read{
+            height:34px;
+            margin:10px auto;
+            line-height: 34px;
+            border-radius:8px;
+            border:1px solid #858382;
+            font-size: 20px;
+            text-align: center;
+            color: #9B410E;
+            opacity:0.9;
+            cursor:pointer;
+        }
+
     </style>
 </head>
 <body>
+<!--目录-->
+<div id="index_container" class="index-container hide">
+    <for start="1" end="$maxChapterNum+1" >
+        <div><p>
+            <a href="{:U('Book/readChapter', array('num'=>$i, 'bookId'=>$bookId))}">{$i}&nbsp;{$chapterIndex[$i]}</a>
+        </p></div>
+    </for>
+    <div id="back_to_read" class="back-to-read">返回阅读</div>
+</div>
 <div id="root" class="container">
-
     <div class="m-artical-action">
         <div class="artical-action-middle" id="action_mid"></div>
     </div>
 
     <div id="top-nav" class="top-nav" style="display:none">
-        <div class="icon-back"></div>
-        <div class="nav-title">返回书架</div>
+        <div class="icon-back" id="back_to_bookshelf"></div>
+        <div class="nav-title" >返回书架</div>
     </div>
-    <div id="fiction_chapter_title">
-
+    <div id="fiction_container" class="m-read-content">
+        <h4 id="chapter_title"></h4>
+        <div id="chapter_content"></div>
     </div>
-    <div id="fiction_container" clas="m-read-content">
-        <h4>{$chapter.title}</h4>
-        <div>{$chapter.content}</div>
-    </div>
-    <div class="m-button-bar">
-        <ul class="u-tab">
-            <li id="prev_button"><a href="{:U('Book/readChapter', array('bookId'=>$chapter['book_id'], 'num'=>$chapter['num']-1))}">上一章</a></li>
-            <li id="next_button"><a href="{:U('Book/readChapter', array('bookId'=>$chapter['book_id'], 'num'=>$chapter['num']+1))}">下一章</a></li>
+    <div id="m_button_bar" class="m-button-bar">
+        <ul class="u-tab" id="page_bar">
+            <li id="prev_button" >上一章</li>
+            <li id="next_button" >下一章</li>
         </ul>
     </div>
     <div class="nav-pannel-bk font-container" style="display:none"></div>
@@ -300,19 +334,23 @@
             <button id="small-font" class="font-size-button">-</button>
         </div>
         <div class="child-mod">
-            <span>背景</span>
-            <div class="bk-container">
-                <div class="bk-container bk-container-current" id="background-color-1"></div>
-                <div class="bk-container" id="background-color-2"></div>
-                <div class="bk-container" id="background-color-3"></div>
-            </div>
+            <span>行距</span>
+            <button id="large-line-height" class="font-size-button">+</button>
+            <button id="small-line-height" class="font-size-button">-</button>
         </div>
+        <!--<div class="child-mod">-->
+            <!--<span>背景</span>-->
+            <!--<div class="bk-container">-->
+                <!--<div class="bk-container bk-container-current" id="background-color-1"></div>-->
+                <!--<div class="bk-container" id="background-color-2"></div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <div class="bottom-nav-bk bottom_nav" style="display:none"></div>
     <div class="bottom-nav bottom_nav" style="display:none">
         <div class="item menu-button" id="menu_button">
             <div class="item-warp">
-                <div class="icon-menu"></div>
+                <div id="icon_menu" class="icon-menu"></div>
                 <div class="icon-text">
                     目录
                 </div>
@@ -369,7 +407,12 @@
             top_nav :$('#top-nav'),
             bottom_nav:$('.bottom_nav'),
             font_container:$('.font-container'),
-            font_button:$('#font-button')
+            font_button:$('#font-button'),
+            prev_button:$('#prev_button'),
+            next_button:$('#next_button'),
+            fiction_container:$('#root'),
+            index_container:$('#index_container'),
+            m_button_bar:$('#m_button_bar')
         };
 
         function switchNightMode(){
@@ -377,6 +420,9 @@
             $('#day_icon').removeClass('hide');
             $('#fiction_container').addClass('m-read-content-night');
             $('body').addClass('body-night');
+            $('#page_bar').css('background', '#000');
+            $('#prev_button').css('color','#fff');
+            $('#next_button').css('color','#fff');
             Util.StorageSetter('is_night', 1);
         }
 
@@ -385,22 +431,69 @@
             $('#night_icon').removeClass('hide');
             $('#fiction_container').removeClass('m-read-content-night');
             $('body').removeClass('body-night');
+            $('#page_bar').css('background', '#e9dfc7');
+            $('#prev_button').css('color','#9B410E');
+            $('#next_button').css('color','#9B410E');
             Util.StorageSetter('is_night', 0);
         }
 
         var Win = $(window);
-        var Doc = $(document);
+        var chapterContent = '{$chapter.content}';
+        var chapterTitle = '{$chapter.title}';
+        var bookId = parseInt('{$chapter.book_id}');
+        var chapterNum = parseInt('{$chapter.num}');
+        var maxChapterNum = parseInt('{$maxChapterNum}');
+
+        $('#chapter_title').append(chapterTitle);
+        $('#chapter_content').append(chapterContent);
+
         var initFontSize = parseInt(Util.StorageGetter('font_size'));
         if( initFontSize ){
             $('#fiction_container').css('font-size', initFontSize);
         }else{
             initFontSize = 14;
         }
+
+        var initLineHeight = parseFloat(Util.StorageGetter('line_height'));
+        if( initLineHeight ){
+            $('#fiction_container').css('line_height', initLineHeight);
+        }else{
+            initLineHeight = 1.5;
+        }
+
         var isNight = parseInt(Util.StorageGetter('is_night'));
         if( isNight ){
             switchNightMode();
         }else{
             isNight = 0;
+        }
+
+        function renderChapter(){
+            url = "{:U('Api/Book/renderChapter')}";
+            var aj = $.ajax( {
+                url:url,
+                data:{
+                    bookId : bookId,
+                    chapterNum : chapterNum
+                },
+                type:'post',
+                cache:false,
+                dataType:'json',
+                success:function(data) {
+                    if(!data.error_code){
+                        $('#chapter_title').empty();
+                        $('#chapter_content').empty();
+                        $('#chapter_title').append(data.title);
+                        $('#chapter_content').append(data.content);
+                        Win.scrollTop(0,0);
+                    }else{
+                        alert(data.msg);
+                    }
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
         }
 
         function main(){
@@ -440,6 +533,40 @@
                 }
             });
 
+            Dom.prev_button.click(function(){
+                if( chapterNum-1 == 0 ){
+                    alert("前面没有内容了");
+                }else{
+                    chapterNum -= 1;
+                    renderChapter();
+                }
+            });
+
+            Dom.next_button.click(function(){
+                if( chapterNum+1 > maxChapterNum ){
+                    alert("后面没有内容了");
+                }else{
+                    chapterNum += 1;
+                    renderChapter();
+                }
+            });
+
+            $('#icon_menu').click(function(){
+                if( Dom.fiction_container.css('display') == 'none'){
+                    Dom.index_container.hide();
+                    Dom.fiction_container.show();
+                    Dom.m_button_bar.show();
+                }else{
+                    Dom.index_container.show();
+                    Dom.fiction_container.hide();
+                    Dom.m_button_bar.hide();
+                }
+            });
+
+            $('#back_to_bookshelf').click(function(){
+                window.location.href = "{:U('Book/bookshelf')}";
+            });
+
             $('#night-button').click(function(){
                 if( $('#day_icon').css('display') == 'none' ){
                     switchNightMode();
@@ -449,7 +576,7 @@
             });
 
             $('#large-font').click(function(){
-                if( initFontSize < 20 ){
+                if( initFontSize < 30 ){
                     initFontSize += 1;
                     $('#fiction_container').css('font-size', initFontSize);
                     Util.StorageSetter('font_size', initFontSize);
@@ -464,17 +591,39 @@
                 }
             });
 
-            Win.scroll(function(){
+            $('#large-line-height').click(function(){
+                if( initLineHeight <= 2 ){
+                    initLineHeight += 0.1;
+                    $('#fiction_container').css('line-height', initLineHeight);
+                    Util.StorageSetter('line_height', initLineHeight);
+                }
+            });
+            $('#small-line-height').click(function(){
+                if( initLineHeight > 1 ){
+                    initLineHeight -= 0.1;
+                    $('#fiction_container').css('line-height', initLineHeight);
+                    Util.StorageSetter('line_height', initLineHeight);
+                }
+            });
+
+            $('#back_to_read').click(function(){
+                Dom.index_container.hide();
+                Dom.fiction_container.show();
+                Dom.m_button_bar.show();
                 Dom.bottom_nav.hide();
                 Dom.top_nav.hide();
                 Dom.font_container.hide();
                 Dom.font_button.removeClass('current');
             });
 
+            Win.scroll(function(){
+                Dom.bottom_nav.hide();
+                Dom.top_nav.hide();
+                Dom.font_container.hide();
+                Dom.font_button.removeClass('current');
+            });
         }
-
         main();
-
     })();
 </script>
 </body>

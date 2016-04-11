@@ -39,6 +39,23 @@ class BookService{
         return M("chapter")->order("num")->where("book_id=$bookId")->select();
     }
 
+    /**
+     * 获取目录
+     * @param $bookId
+     * @return mixed
+     */
+    public static function getChapterIndex($bookId){
+        $chapterList = BookService::getChapterList($bookId);
+        foreach ( $chapterList as $chapter ) {
+            $chapterIndex[intval($chapter['num'])] = $chapter['title'];
+        }
+        return isset($chapterIndex)?$chapterIndex:null;
+    }
+
+    public static function getMaxChapterNum($bookId){
+        return M("chapter")->where("book_id=$bookId")->count();
+    }
+
     public static function updateIndex($bookId){
         //TODO 刷新书籍目录
     }
