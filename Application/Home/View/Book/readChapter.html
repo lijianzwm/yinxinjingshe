@@ -60,6 +60,7 @@
             font-size: 12px;
             background:#000;
             opacity:0.9;
+            cursor:pointer;
         }
 
         .u-tab li{
@@ -280,17 +281,17 @@
         <div class="icon-back"></div>
         <div class="nav-title">返回书架</div>
     </div>
-    <div id="fiction_chapter_title">
+    <!--<div id="fiction_chapter_title">-->
 
-    </div>
+    <!--</div>-->
     <div id="fiction_container" class="m-read-content">
-        <h4>{$chapter.title}</h4>
-        <div>{$chapter.content}</div>
+        <h4 id="chapter_title"></h4>
+        <div id="chapter_content"></div>
     </div>
     <div class="m-button-bar">
         <ul class="u-tab">
-            <li id="prev_button"><a href="{:U('Book/readChapter', array('bookId'=>$chapter['book_id'], 'num'=>$chapter['num']-1))}">上一章</a></li>
-            <li id="next_button"><a href="{:U('Book/readChapter', array('bookId'=>$chapter['book_id'], 'num'=>$chapter['num']+1))}">下一章</a></li>
+            <li id="prev_button" >上一章</li>
+            <li id="next_button" >下一章</li>
         </ul>
     </div>
     <div class="nav-pannel-bk font-container" style="display:none"></div>
@@ -305,8 +306,6 @@
             <button id="large-line-height" class="font-size-button">+</button>
             <button id="small-line-height" class="font-size-button">-</button>
         </div>
-
-
         <!--<div class="child-mod">-->
             <!--<span>背景</span>-->
             <!--<div class="bk-container">-->
@@ -376,7 +375,9 @@
             top_nav :$('#top-nav'),
             bottom_nav:$('.bottom_nav'),
             font_container:$('.font-container'),
-            font_button:$('#font-button')
+            font_button:$('#font-button'),
+            prev_button:$('#prev_button'),
+            next_button:$('#next_button')
         };
 
         function switchNightMode(){
@@ -396,7 +397,14 @@
         }
 
         var Win = $(window);
-        var Doc = $(document);
+        var chapterContent = '{$chapter.content}';
+        var chapterTitle = '{$chapter.title}';
+        var bookId = parseInt('{$chapter.book_id}');
+        var chapterNum = parseInt('{$chapter.num}');
+        var maxChapterNum = parseInt('{$maxChapterNum}');
+
+        $('#chapter_title').append(chapterTitle);
+        $('#chapter_content').append(chapterContent);
 
         var initFontSize = parseInt(Util.StorageGetter('font_size'));
         if( initFontSize ){
@@ -417,6 +425,34 @@
             switchNightMode();
         }else{
             isNight = 0;
+        }
+
+        function renderChapter(){
+            url = "{:U('Api/Book/renderChapter')}";
+            var aj = $.ajax( {
+                url:url,
+                data:{
+                    bookId : bookId,
+                    chapterNum : chapterNum
+                },
+                type:'post',
+                cache:false,
+                dataType:'json',
+                success:function(data) {
+                    if(!data.error_code){
+                        $('#chapter_title').empty();
+                        $('#chapter_content').empty();
+                        $('#chapter_title').append(data.title);
+                        $('#chapter_content').append(data.content);
+                        Win.scrollTop(0,0);
+                    }else{
+                        alert(data.msg);
+                    }
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
         }
 
         function main(){
@@ -453,6 +489,24 @@
                 }else{
                     Dom.font_container.hide();
                     Dom.font_button.removeClass('current');
+                }
+            });
+
+            Dom.prev_button.click(function(){
+                if( chapterNum-1 == 0 ){
+                    alert("前面没有内容了");
+                }else{
+                    chapterNum -= 1;
+                    renderChapter();
+                }
+            });
+
+            Dom.next_button.click(function(){
+                if( chapterNum+1 > maxChapterNum ){
+                    alert("后面没有内容了");
+                }else{
+                    chapterNum += 1;
+                    renderChapter();
                 }
             });
 
@@ -501,11 +555,8 @@
                 Dom.font_container.hide();
                 Dom.font_button.removeClass('current');
             });
-
         }
-
         main();
-
     })();
 </script>
 </body>

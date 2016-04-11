@@ -39,6 +39,10 @@ class BookService{
         return M("chapter")->order("num")->where("book_id=$bookId")->select();
     }
 
+    public static function getMaxChapterNum($bookId){
+        return M("chapter")->where("book_id=$bookId")->count();
+    }
+
     public static function updateIndex($bookId){
         //TODO 刷新书籍目录
     }

@@ -18,8 +18,8 @@ class BookController extends Controller{
      * @param $bookId
      * @param $chapterNum
      */
-    public function renderChapter( $bookId, $chapterNum ){
-        $chapter = BookService::getChapter($bookId, $chapterNum);
+    public function renderChapter(){
+        $chapter = BookService::getChapter(I("bookId"), I("chapterNum"));
         if( $chapter ){
             $json['error_code'] = 0;
             $json['title'] = $chapter['title'];
