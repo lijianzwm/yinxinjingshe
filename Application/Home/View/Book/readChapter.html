@@ -24,18 +24,19 @@
             background:#000000;
         }
 
-        .m-read-content{
-            font-size: 14px;
-            color:#555;
-            line-height:31px;
-            padding:15px;//让内容看起来不是那么挤
-        }
+        /*.m-read-content{*/
+            /*font-size: 14px;*/
+            /*color:#555;*/
+            /*line-height:31px;*/
+            /*padding:15px;//让内容看起来不是那么挤*/
+        /*}*/
 
         .m-read-content h4{
             font-size: 20px;
             color:#736357;
             border-bottom:solid 1px #736357;
             letter-spacing:2px;
+            line-height:40px;
             margin:0 0 1em 0;
         }
 
@@ -43,7 +44,7 @@
             text-indent: 2em;
             margin:0.5em 0;
             letter-spacing:0px;
-            line-height:24px;
+            padding:15px;
         }
 
         .m-read-content-night{
@@ -282,7 +283,7 @@
     <div id="fiction_chapter_title">
 
     </div>
-    <div id="fiction_container" clas="m-read-content">
+    <div id="fiction_container" class="m-read-content">
         <h4>{$chapter.title}</h4>
         <div>{$chapter.content}</div>
     </div>
@@ -300,12 +301,19 @@
             <button id="small-font" class="font-size-button">-</button>
         </div>
         <div class="child-mod">
-            <span>背景</span>
-            <div class="bk-container">
-                <div class="bk-container bk-container-current" id="background-color-1"></div>
-                <div class="bk-container" id="background-color-2"></div>
-            </div>
+            <span>行距</span>
+            <button id="large-line-height" class="font-size-button">+</button>
+            <button id="small-line-height" class="font-size-button">-</button>
         </div>
+
+
+        <!--<div class="child-mod">-->
+            <!--<span>背景</span>-->
+            <!--<div class="bk-container">-->
+                <!--<div class="bk-container bk-container-current" id="background-color-1"></div>-->
+                <!--<div class="bk-container" id="background-color-2"></div>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
     <div class="bottom-nav-bk bottom_nav" style="display:none"></div>
     <div class="bottom-nav bottom_nav" style="display:none">
@@ -389,12 +397,21 @@
 
         var Win = $(window);
         var Doc = $(document);
+
         var initFontSize = parseInt(Util.StorageGetter('font_size'));
         if( initFontSize ){
             $('#fiction_container').css('font-size', initFontSize);
         }else{
             initFontSize = 14;
         }
+
+        var initLineHeight = parseFloat(Util.StorageGetter('line_height'));
+        if( initLineHeight ){
+            $('#fiction_container').css('line_height', initLineHeight);
+        }else{
+            initLineHeight = 1;
+        }
+
         var isNight = parseInt(Util.StorageGetter('is_night'));
         if( isNight ){
             switchNightMode();
@@ -460,6 +477,21 @@
                     initFontSize -= 1;
                     $('#fiction_container').css('font-size', initFontSize);
                     Util.StorageSetter('font_size', initFontSize);
+                }
+            });
+
+            $('#large-line-height').click(function(){
+                if( initLineHeight <= 2 ){
+                    initLineHeight += 0.1;
+                    $('#fiction_container').css('line-height', initLineHeight);
+                    Util.StorageSetter('line_height', initLineHeight);
+                }
+            });
+            $('#small-line-height').click(function(){
+                if( initLineHeight > 1 ){
+                    initLineHeight -= 0.1;
+                    $('#fiction_container').css('line-height', initLineHeight);
+                    Util.StorageSetter('line_height', initLineHeight);
                 }
             });
 
