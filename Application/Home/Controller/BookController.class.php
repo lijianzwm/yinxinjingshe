@@ -35,6 +35,9 @@ class BookController extends Controller{
         $bookId = I("bookId");
         $chapter = BookService::getChapter($bookId, $num);
         $maxChapterNum = BookService::getMaxChapterNum($bookId);
+        $chapterIndex = BookService::getChapterIndex($bookId);
+        $this->assign("chapterIndex", $chapterIndex);
+        $this->assign("bookId", $bookId);
         $this->assign("maxChapterNum",$maxChapterNum);
         $this->assign("chapter", $chapter);
         $this->display();

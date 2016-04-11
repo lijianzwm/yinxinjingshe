@@ -8,7 +8,7 @@
 <table>
     <foreach name="bookList" item="book">
         <tr><td>
-            <a href="{:U('Book/chapterList', array('id'=>$book['id']))}">{$book.name}</a>
+            <a href="{:U('Book/readChapter', array('bookId'=>$book['id'],'num'=>'1'))}">{$book.name}</a>
         </td></tr>
     </foreach>
 </table>

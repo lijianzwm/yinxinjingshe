@@ -47,6 +47,15 @@
             padding:15px;
         }
 
+        .index-container{
+            text-indent: 2em;
+            margin:0.5em 0;
+            letter-spacing:0px;
+            padding:15px;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+
         .m-read-content-night{
             color:#737373;
         }
@@ -107,7 +116,6 @@
             top:16px;
             left:42px;
             color:#d5d5d6;
-
         }
 
         .nav-pannel-bk{
@@ -219,6 +227,7 @@
         .icon-night, .icon-day, .icon-ft {
             left: 1px;
         }
+
         .icon-ft {
             width: 20px;
             height: 13px;
@@ -254,6 +263,10 @@
             display:none;
         }
 
+        .show{
+            display:block;
+        }
+
         .item-warp {
             width: 26px;
             margin: 0 auto;
@@ -269,11 +282,32 @@
             color:#000;
         }
 
+        .back-to-read{
+            height:34px;
+            margin:10px auto;
+            line-height: 34px;
+            border-radius:8px;
+            border:1px solid #858382;
+            font-size: 20px;
+            text-align: center;
+            color: #9B410E;
+            opacity:0.9;
+            cursor:pointer;
+        }
+
     </style>
 </head>
 <body>
+<!--目录-->
+<div id="index_container" class="index-container hide">
+    <for start="1" end="$maxChapterNum+1" >
+        <div><p>
+            <a href="{:U('Book/readChapter', array('num'=>$i, 'bookId'=>$bookId))}">{$i}&nbsp;{$chapterIndex[$i]}</a>
+        </p></div>
+    </for>
+    <div id="back_to_read" class="back-to-read">返回阅读</div>
+</div>
 <div id="root" class="container">
-
     <div class="m-artical-action">
         <div class="artical-action-middle" id="action_mid"></div>
     </div>
@@ -282,14 +316,11 @@
         <div class="icon-back" id="back_to_bookshelf"></div>
         <div class="nav-title" >返回书架</div>
     </div>
-    <!--<div id="fiction_chapter_title">-->
-
-    <!--</div>-->
     <div id="fiction_container" class="m-read-content">
         <h4 id="chapter_title"></h4>
         <div id="chapter_content"></div>
     </div>
-    <div class="m-button-bar">
+    <div id="m_button_bar" class="m-button-bar">
         <ul class="u-tab">
             <li id="prev_button" >上一章</li>
             <li id="next_button" >下一章</li>
@@ -319,7 +350,7 @@
     <div class="bottom-nav bottom_nav" style="display:none">
         <div class="item menu-button" id="menu_button">
             <div class="item-warp">
-                <div class="icon-menu"></div>
+                <div id="icon_menu" class="icon-menu"></div>
                 <div class="icon-text">
                     目录
                 </div>
@@ -378,7 +409,10 @@
             font_container:$('.font-container'),
             font_button:$('#font-button'),
             prev_button:$('#prev_button'),
-            next_button:$('#next_button')
+            next_button:$('#next_button'),
+            fiction_container:$('#root'),
+            index_container:$('#index_container'),
+            m_button_bar:$('#m_button_bar')
         };
 
         function switchNightMode(){
@@ -511,6 +545,18 @@
                 }
             });
 
+            $('#icon_menu').click(function(){
+                if( Dom.fiction_container.css('display') == 'none'){
+                    Dom.index_container.hide();
+                    Dom.fiction_container.show();
+                    Dom.m_button_bar.show();
+                }else{
+                    Dom.index_container.show();
+                    Dom.fiction_container.hide();
+                    Dom.m_button_bar.hide();
+                }
+            });
+
             $('#back_to_bookshelf').click(function(){
                 window.location.href = "{:U('Book/bookshelf')}";
             });
@@ -552,6 +598,16 @@
                     $('#fiction_container').css('line-height', initLineHeight);
                     Util.StorageSetter('line_height', initLineHeight);
                 }
+            });
+
+            $('#back_to_read').click(function(){
+                Dom.index_container.hide();
+                Dom.fiction_container.show();
+                Dom.m_button_bar.show();
+                Dom.bottom_nav.hide();
+                Dom.top_nav.hide();
+                Dom.font_container.hide();
+                Dom.font_button.removeClass('current');
             });
 
             Win.scroll(function(){
