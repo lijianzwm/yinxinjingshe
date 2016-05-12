@@ -85,8 +85,11 @@
         }
 
         .m-button-bar{
+            position:fixed;
+            bottom:10px;
+            left:15%;
             width:70%;
-            max-width:800px;
+            /*max-width:800px;*/
             padding:5px;
             margin:0 auto;
         }
@@ -451,7 +454,7 @@
         if( initFontSize ){
             $('#fiction_container').css('font-size', initFontSize);
         }else{
-            initFontSize = 14;
+            initFontSize = 20;
         }
 
         var initLineHeight = parseFloat(Util.StorageGetter('line_height'));

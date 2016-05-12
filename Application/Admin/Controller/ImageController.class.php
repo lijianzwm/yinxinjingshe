@@ -35,9 +35,12 @@ class ImageController extends Controller{
         $tmpImgName = I("tmpImgName");
         $path = iconv('utf-8','gb2312',"Upload/tmp/".$tmpImgName);
         $absPath = C("ABS_TMP_PATH").$tmpImgName;
-        move_uploaded_file($_FILES['upload_file']['tmp_name'], $path);
-        $thumbPath = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
-        ImageService::thumb(870, $thumbPath, $thumbPath);
-        echo "<textarea><img src='{$absPath}' id='cropbox' /></textarea>";
+        if( move_uploaded_file($_FILES['upload_file']['tmp_name'], $path) ){
+            $thumbPath = C("TMP_PATH").$tmpImgName;//为了使用image，转换为相对路径
+            ImageService::thumb(870, $thumbPath, $thumbPath);
+            echo "<textarea><img src='{$absPath}' id='cropbox' /></textarea>";
+        }else{
+            echo "<textarea>上传失败!</textarea>";
+        }
     }
 }

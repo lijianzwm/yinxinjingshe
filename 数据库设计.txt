@@ -70,10 +70,9 @@ CREATE TABLE `xzx_chapter` (
 
 CREATE TABLE `xzx_book` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '书籍id',
-  `num` int(10) unsigned default 0 COMMENT '书籍序号',
+  `num` int(10) unsigned DEFAULT '0' COMMENT '书籍序号',
   `author` varchar(20) NOT NULL COMMENT '作者',
   `name` varchar(100) NOT NULL COMMENT '书名',
-  `index` text COMMENT '目录',
+  `image` varchar(100) NOT NULL COMMENT '书籍图片名',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
