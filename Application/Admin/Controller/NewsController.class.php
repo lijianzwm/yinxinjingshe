@@ -48,7 +48,9 @@ class NewsController extends CommonController{
         $data['img_name'] = I("img");
         $data['abstract'] = I("abstract");
         $data['content'] = I("content");
+        $data['update_time'] = date("Y-m-d H:i:s");
         if ($id == C("NEW_NEWS")) {//如果是插入news
+            $data['create_time'] = date("Y-m-d H:i:s");
             if (M("news")->add($data)) {
                 $this->success("添加推送成功！", U('newsList'));
             }else{

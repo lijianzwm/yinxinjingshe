@@ -15,8 +15,8 @@ CREATE TABLE `xzx_news` (
   `img_name` varchar(500) NOT NULL COMMENT '标题图片名称',
   `abstract` char(200) DEFAULT NULL COMMENT '推送摘要',
   `content` text COMMENT '推送正文',
-  `create_time` datetime COMMENT '推送创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '推送修改时间',
+  `create_time` datetime NOT NULL COMMENT '推送创建时间',
+  `update_time` datetime NOT NULL COMMENT '推送修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
