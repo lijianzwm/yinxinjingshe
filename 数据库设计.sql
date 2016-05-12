@@ -32,8 +32,16 @@ CREATE TABLE `xzx_video` (
   `set_id` int(10) unsigned NOT NULL COMMENT '视频所属视频集编号',
   `sort_num` int(10) unsigned NOT NULL COMMENT '视频排序编号',
   `name` varchar(100) NOT NULL COMMENT '本节视频标题',
-  `content` text COMMENT '视频内容',
+  `video_url` varchar(300) NOT NULL COMMENT '视频连接地址',
   PRIMARY KEY (`video_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `xzx_video_subtitles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '字幕编号',
+  `video_id` int(10) unsigned NOT NULL COMMENT '字母对应视频编号',
+  `start_time` int(10) unsigned NOT NULL COMMENT '字幕所对应的位置距视频起始位置的秒数',
+  `content` varchar(1000) NOT NULL COMMENT '字幕内容',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `xzx_activity` (
