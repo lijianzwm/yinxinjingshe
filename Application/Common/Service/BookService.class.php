@@ -14,7 +14,7 @@ class BookService{
     public static function getEmptyChapter($bookId){
         $chapter['id'] = -1;
         $chapter['book_id'] = $bookId;
-        $chapters = M("chapter")->order("num desc")->select();
+        $chapters = M("chapter")->where("book_id=$bookId")->order("num desc")->select();
         if( $chapters ){
             $chapter['num'] = intval($chapters[0]['num'] )+1;
         }else{
