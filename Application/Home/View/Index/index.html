@@ -5,7 +5,12 @@
     <title>Home</title>
 </head>
 <body>
+<form action="{:U('')}" method="post">
+    <div><input name="keyWords" /><input type="submit" value="有问题,搜一搜"/></div>
+</form>
+<div></div>
 <div><a href="{:U('Book/bookshelf')}">书架</a></div>
+<div><a href="{:U('Video/videoSetList')}">视频</a></div>
 <div><a href="{:U('/Admin/Login')}">后台管理系统</a></div>
 </body>
 </html>

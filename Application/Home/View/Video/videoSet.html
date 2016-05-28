@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$name}</title>
+</head>
+<body>
+<div>{$name}</div>
+<foreach name="list" item="v">
+    <div>
+        <a href="{:U('Video/playVideo',array('videoId'=>$v['video_id']))}">{$v.sort_num}&nbsp;&nbsp;{$v.name}</a>
+    </div>
+</foreach>
+</body>
+</html>

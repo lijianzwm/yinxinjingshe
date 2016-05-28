@@ -32,7 +32,8 @@ CREATE TABLE `xzx_video` (
   `set_id` int(10) unsigned NOT NULL COMMENT '视频所属视频集编号',
   `sort_num` int(10) unsigned NOT NULL COMMENT '视频排序编号',
   `name` varchar(100) NOT NULL COMMENT '本节视频标题',
-  `video_url` varchar(300) NOT NULL COMMENT '视频连接地址',
+  `mp4_url` varchar(300) NOT NULL COMMENT 'MP4视频连接地址',
+  `ogg_url` varchar(300) NOT NULL COMMENT 'OGG视频连接地址',
   PRIMARY KEY (`video_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$video.father}-{$video.name}</title>
+</head>
+<body>
+<div>{$video.father}-{$video.name}</div>
+<div>
+    <video id="video" width="432" height="240" controls="controls" preload="preload">
+        <source src="{$video.mp4_url}" type="video/mp4">
+        <source src="{$video.ogg_url}" type="video/ogg">
+    </video>
+</div>
+</body>
+</html>

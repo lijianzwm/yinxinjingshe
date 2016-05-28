@@ -73,7 +73,8 @@ class VideoController extends CommonController{
         $video["set_id"] = I("setId");
         $video["sort_num"] = I("sortNum");
         $video["name"] = I("name");
-        $video["video_url"] = I("video_url");
+        $video["mp4_url"] = I("mp4_url");
+        $video["ogg_url"] = I("ogg_url");
 
         $upload = new \Think\Upload();// 实例化上传类
         $upload->maxSize   =     3145728 ;// 设置附件上传大小
