@@ -5,7 +5,7 @@
     <title>编辑视频</title>
 </head>
 <body>
-<form action="{:U('Video/editVideoHandler')}" method="post">
+<form action="{:U('Video/editVideoHandler')}" method="post" enctype="multipart/form-data" >
     <div>
         视频集：{$video.father}
         <input type="hidden" name="videoId" value="{$video.video_id}"/>
@@ -13,8 +13,10 @@
     </div>
     <div>视频编号：<input type="text" name="sortNum" value="{$video.sort_num}"/></div>
     <div>视频名称：<input type="text" name="name" value="{$video.name}"/></div>
-    <div>视频链接通用代码：</div>
-    <div><textarea name="content">{$video.content}</textarea></div>
+    <div>MP4视频地址：<input type="text" name="mp4_url" value="{$video.mp4_url}"/></div>
+    <div>OGG视频地址：<input type="text" name="ogg_url" value="{$video.ogg_url}"/></div>
+    <div>视频字幕:</div>
+    <div><input type="file" name="upload_file" id="upload_file"></div>
     <div><input type="submit" value="提交"/></div>
 </form>
 </body>

@@ -41,7 +41,7 @@ class VideoService{
     public static function getVideo( $videoId ){
         $video = M("video");
         return $video->table("xzx_video v, xzx_video_set_list s")->where("v.video_id='$videoId' and s.set_id = v.set_id")
-                ->field("v.video_id, v.set_id, v.sort_num, v.name, v.content, s.name as father")->find();
+                ->field("v.video_id, v.set_id, v.sort_num, v.name, v.mp4_url, v.ogg_url, s.name as father")->find();
     }
 
     public static function getEmptyVideo($setId){
