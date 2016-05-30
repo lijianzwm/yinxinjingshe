@@ -19,24 +19,45 @@
     <title>编辑章节</title>
 </head>
 <body>
-<form action="{:U('Book/editChapterHandler')}" method="post">
-    <table>
-        <tr><td>{$bookName}</td></tr>
-        <tr><td><input type="hidden" name="id" value="{$chapter.id}"/></td></tr>
-        <tr><td><input type="hidden" name="bookId" value="{$bookId}"/></td></tr>
-        <tr><td>
-            章节标题：<input name="title" value="{$chapter.title}"/>
-        </td></tr>
-        <tr><td>
-            章节序号：<input name="num" value="{$chapter.num}"/>
-        </td></tr>
-        <tr><td>
-            章节内容：<textarea id="content" name="content">{$chapter.content}</textarea>
-        </td></tr>
-        <tr><td>
-            <input type="submit" value="提交"/>
-        </td></tr>
-    </table>
-</form>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{$bookName}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row"></div>
+                    <form class="form-horizontal" action="{:U('Book/editChapterHandler')}" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">章节标题</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="id" value="{$chapter.id}"/>
+                                <input type="hidden" name="bookId" value="{$bookId}"/>
+                                <input type="text" name="title" class="form-control" value="{$chapter.title}" placeholder="请输入章节标题">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">章节序号</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="num" class="form-control" value="{$chapter.num}" placeholder="章节排序编号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="content" name="content">{$chapter.content}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-default" type="submit" value="提交"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
 </body>
 </html>
