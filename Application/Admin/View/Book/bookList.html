@@ -5,21 +5,28 @@
     <title>书籍列表</title>
 </head>
 <body>
-<div>
-    <table>
-        <tr><td><a href="{:U('Book/addBook')}">添加书籍</a></td></tr>
+
+<div class="container">
+    <div class="page-header">
+        <a href="{:U('Book/addBook')}">添加书籍</a>
+    </div>
+
+    <table class="table">
+        <tbody>
         <foreach name="bookList" item="book">
             <tr>
-                <td><a href="{:U('Book/chapterList', array('id'=>$book['id'], 'bookName'=>$book['name']))}">{$book.name}</a></td>
+                <td></td>
+                <td>
+                    <a href="{:U('Book/chapterList', array('id'=>$book['id'], 'bookName'=>$book['name']))}">{$book.name}</a>
+                </td>
                 <td>{$book.author}</td>
                 <td><a href="{:U('Book/modifyBook', array('id'=>$book['id']))}">修改&nbsp;&nbsp;</a></td>
                 <td><a href="{:U('Book/deleteBook', array('id'=>$book['id']))}">删除</a></td>
             </tr>
         </foreach>
-        <tr>
-            <td></td>
-        </tr>
+        </tbody>
     </table>
 </div>
+
 </body>
 </html>
