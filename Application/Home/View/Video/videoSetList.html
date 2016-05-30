@@ -5,10 +5,14 @@
     <title>视频集列表</title>
 </head>
 <body>
-<foreach name="videoSetList" item="v">
-    <div>
-        <a href="{:U('Video/videoSet', array('setId'=>$v['set_id'],'setName'=>$v['name']))}">{$v.name}</a>
+
+<div class="container">
+    <div class="list-group">
+        <foreach name="videoSetList" item="v">
+            <a class="list-group-item" href="{:U('Video/videoSet', array('setId'=>$v['set_id'],'setName'=>$v['name']))}">{$v.name}</a>
+        </foreach>
     </div>
-</foreach>
+</div>
+
 </body>
 </html>

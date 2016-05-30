@@ -2,9 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>印心精舍</title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{:U('Home/Index/index')}"><strong style="font-size:30px;color:black;">印心精舍</strong></a>
+        </div>
+        <div class="pull-right text-right">
+            <a href="{:U('Index/index')}">首页</a>&nbsp;&nbsp;
+            <a href="{:U('Book/bookshelf')}">文集</a>&nbsp;&nbsp;
+            <a href="{:U('Video/videoSetList')}">视频</a>&nbsp;&nbsp;
+            <a href="{:U('Index/index')}">论坛</a>&nbsp;&nbsp;
+            <if condition="$Think.session.user neq null">
+                <a href="{:U('Index/index')}">个人</a>&nbsp;&nbsp;
+                <else/>
+                <a href="{:U('User/login')}">登录</a>
+            </if>
+            <if condition="$Think.session.user.admin eq 1">
+                <div><a href="{:U('/Admin/Login')}">后台管理系统</a></div>
+            </if>
 
+            <form action="{:U('')}" method="post">
+                <input name="keyWords"/><input type="submit" value="有问题,搜一搜"/>
+            </form>
+
+        </div>
+    </div>
+</nav>
 </body>
 </html>

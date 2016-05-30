@@ -7,74 +7,86 @@
 <script src="__PUBLIC__/lib/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 
-    function ajaxFunction( id, ajaxUrl ){
-        var aj = $.ajax( {
-            url:ajaxUrl,
-            data:{
-                newsId : id
+    function ajaxFunction(id, ajaxUrl) {
+        var aj = $.ajax({
+            url: ajaxUrl,
+            data: {
+                newsId: id
             },
-            type:'post',
-            cache:false,
-            dataType:'json',
-            success:function(data) {
-                if(data.msg == true ){
+            type: 'post',
+            cache: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data.msg == true) {
                     alert(data.hint);
                     window.location.reload();
-                }else{
+                } else {
                     alert(data.hint);
                 }
             },
-            error : function() {
+            error: function () {
                 alert("异常！");
             }
         });
     }
 
-    function deleteNews(newsId, newsTitle){
-        if( confirm("确定要删除以下内容？\n"+newsTitle)){
-            if( confirm("一旦删除便无法恢复，真的确定吗？")){
+    function deleteNews(newsId, newsTitle) {
+        if (confirm("确定要删除以下内容？\n" + newsTitle)) {
+            if (confirm("一旦删除便无法恢复，真的确定吗？")) {
                 ajaxFunction(newsId, "{:U('News/deleteNews')}");
             }
         }
     }
 
-    function stickie(newsId, newsTitle){
-        if( confirm("确定要将以下推送置顶吗？\n"+newsTitle)){
-            if( confirm("请再次确认\n"+newsTitle)){
+    function stickie(newsId, newsTitle) {
+        if (confirm("确定要将以下推送置顶吗？\n" + newsTitle)) {
+            if (confirm("请再次确认\n" + newsTitle)) {
                 ajaxFunction(newsId, "{:U('News/stickieNews')}");
             }
         }
     }
 
-    function unstickie(newsId, newsTitle){
-        if( confirm("确定要将以下推送置顶吗？\n"+newsTitle)){
-            if( confirm("请再次确认\n"+newsTitle)){
+    function unstickie(newsId, newsTitle) {
+        if (confirm("确定要将以下推送置顶吗？\n" + newsTitle)) {
+            if (confirm("请再次确认\n" + newsTitle)) {
                 ajaxFunction(newsId, "{:U('News/unstickieNews')}");
             }
         }
     }
 </script>
 <body>
-<table>
-    <tr><td><a href="{:U('News/editNews')}">添加推送</a></td></tr>
-    <tr>
-        <td>标题</td>
-        <td>作者</td>
-        <td>操作</td>
-    </tr>
-    <foreach name="newsList" item="v">
-        <tr>
-            <td>{$v.title}</td>
-            <td>{$v.author}</td>
-            <td><a href="{:U('News/editNews', array('id'=>$v['id']))}">修改</a>&nbsp;
-                <a href="#" onclick="deleteNews('{$v.id}','{$v.title}')" >删除</a>&nbsp;
-                <a href="#" onclick="stickie('{$v.id}','{$v.title}')" >置顶</a>&nbsp;
-                <a href="#" onclick="unstickie('{$v.id}','{$v.title}')" >取消置顶</a>&nbsp;
-            </td>
-        </tr>
-    </foreach>
-    <tr><td>{$page}</td></tr>
-</table>
+<div class="container">
+    <div class="page-header">
+        <a href="{:U('News/editNews')}">添加推送</a>
+    </div>
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>推送标题</th>
+            <th>发布者</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <foreach name="newsList" item="v">
+            <tr>
+                <td></td>
+                <td>{$v.title}</td>
+                <td>{$v.author}</td>
+                <td><a href="{:U('News/editNews', array('id'=>$v['id']))}">修改</a>&nbsp;
+                    <a href="#" onclick="deleteNews('{$v.id}','{$v.title}')">删除</a>&nbsp;
+                    <a href="#" onclick="stickie('{$v.id}','{$v.title}')">置顶</a>&nbsp;
+                    <a href="#" onclick="unstickie('{$v.id}','{$v.title}')">取消置顶</a>&nbsp;
+                </td>
+            </tr>
+        </foreach>
+        <tr>
+            <td>{$page}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -23,6 +23,7 @@ class BookController extends Controller{
     }
 
     public function chapterList(){
+        layout(false);
         $bookId = I("id");
         $chapterList = BookService::getChapterList($bookId);
         $this->assign("bookId", $bookId);
@@ -31,6 +32,7 @@ class BookController extends Controller{
     }
 
     public function readChapter(){
+        layout(false);
         $num = I("num");
         $bookId = I("bookId");
         $chapter = BookService::getChapter($bookId, $num);
