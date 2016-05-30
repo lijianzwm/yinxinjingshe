@@ -33,17 +33,21 @@
     }
 </script>
 <body>
-<div>
-    <div>
-        <a href="{:U('Video/addVideo', array('setId'=>$setId))}">添加视频</a>
+<div class="container">
+    <h1>{$setName}</h1>
+    <div class="text-right">
+        <a class="btn btn-success" href="{:U('Video/addVideo', array('setId'=>$setId))}">添加视频</a>
     </div>
-    <foreach name="videoSet" item="v">
-        <div>
-            {$v.sort_num}&nbsp;&nbsp;{$v.name}
-            <a href="{:U('Video/modifyVideo', array('videoId'=>$v['video_id']))}">修改</a>
-            <a href="#" onclick="deleteVideo('{$v.video_id}', '{$v.name}')">删除</a>
-        </div>
-    </foreach>
+    <table class="table">
+        <foreach name="videoSet" item="v">
+            <tr>
+                <td>{$v.sort_num}</td>
+                <td>{$v.name}</td>
+                <td><a href="{:U('Video/modifyVideo', array('videoId'=>$v['video_id']))}">修改</a></td>
+                <td><a href="#" onclick="deleteVideo('{$v.video_id}', '{$v.name}')">删除</a></td>
+            </tr>
+        </foreach>
+    </table>
 </div>
 </body>
 </html>

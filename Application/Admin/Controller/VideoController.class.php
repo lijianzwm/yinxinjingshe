@@ -51,8 +51,11 @@ class VideoController extends CommonController{
 
     public function videoSet(){
         $videoSet = VideoService::getVideoSet(I("setId"));
+        $setId = I("setId");
+        $setName = VideoService::getVideoSetName($setId);
         $this->assign("videoSet", $videoSet);
-        $this->assign("setId", I("setId"));
+        $this->assign("setId", $setId);
+        $this->assign("setName", $setName);
         $this->display();
     }
 
