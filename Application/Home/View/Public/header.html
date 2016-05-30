@@ -24,14 +24,18 @@
         </div>
         <div class="pull-right text-right">
             <a href="{:U('Index/index')}">首页</a>&nbsp;&nbsp;
-            <a href="{:U('Index/index')}">文集</a>&nbsp;&nbsp;
-            <a href="{:U('Index/index')}">视频</a>&nbsp;&nbsp;
+            <a href="{:U('Book/bookshelf')}">文集</a>&nbsp;&nbsp;
+            <a href="{:U('Video/videoSetList')}">视频</a>&nbsp;&nbsp;
             <a href="{:U('Index/index')}">论坛</a>&nbsp;&nbsp;
             <if condition="$Think.session.user neq null">
                 <a href="{:U('Index/index')}">个人</a>&nbsp;&nbsp;
                 <else/>
                 <a href="{:U('User/login')}">登录</a>
             </if>
+            <if condition="$Think.session.user.admin eq 1">
+                <div><a href="{:U('/Admin/Login')}">后台管理系统</a></div>
+            </if>
+
             <form action="{:U('')}" method="post">
                 <input name="keyWords"/><input type="submit" value="有问题,搜一搜"/>
             </form>
