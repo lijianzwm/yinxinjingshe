@@ -5,19 +5,60 @@
     <title>编辑视频</title>
 </head>
 <body>
-<form action="{:U('Video/editVideoHandler')}" method="post" enctype="multipart/form-data" >
-    <div>
-        视频集：{$video.father}
-        <input type="hidden" name="videoId" value="{$video.video_id}"/>
-        <input type="hidden" name="setId" value="{$video.set_id}"/>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{$video.father}</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" action="{:U('Video/editVideoHandler')}" method="post" enctype="multipart/form-data" >
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">视频编号</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="videoId" value="{$video.video_id}"/>
+                                <input type="hidden" name="setId" value="{$video.set_id}"/>
+                                <input type="text" name="sortNum" class="form-control" value="{$video.sort_num}" placeholder="请输入视频序号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">视频名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="name" class="form-control" value="{$video.name}" placeholder="请输入视频名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">MP4视频地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="mp4_url" class="form-control" value="{$video.mp4_url}" placeholder="请输入MP4格式视频URL地址">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">OGG视频地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="ogg_url" class="form-control" value="{$video.ogg_url}" placeholder="请输入OGG格式视频URL地址">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">视频字幕文件</label>
+                            <div class="col-sm-10">
+                                <input type="file" name="upload_file" id="upload_file">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input class="btn btn-default" type="submit" value="提交"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    <div>视频编号：<input type="text" name="sortNum" value="{$video.sort_num}"/></div>
-    <div>视频名称：<input type="text" name="name" value="{$video.name}"/></div>
-    <div>MP4视频地址：<input type="text" name="mp4_url" value="{$video.mp4_url}"/></div>
-    <div>OGG视频地址：<input type="text" name="ogg_url" value="{$video.ogg_url}"/></div>
-    <div>视频字幕:</div>
-    <div><input type="file" name="upload_file" id="upload_file"></div>
-    <div><input type="submit" value="提交"/></div>
-</form>
+</div>
+
 </body>
 </html>
