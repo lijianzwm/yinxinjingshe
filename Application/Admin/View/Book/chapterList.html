@@ -5,11 +5,13 @@
     <title>章节列表</title>
 </head>
 <body>
-    <table>
-        <tr><td>{$bookName}</td></tr>
-        <tr><td>
-            <a href="{:U('Book/addChapter', array('bookName'=>$bookName, 'bookId'=>$bookId))}">添加章节</a>
-        </td></tr>
+
+<div class="container">
+    <h1>{$bookName}</h1>
+    <div class="pull-right">
+        <a class="btn btn-default" href="{:U('Book/addChapter', array('bookName'=>$bookName, 'bookId'=>$bookId))}">添加章节</a>
+    </div>
+    <table class="table">
         <foreach name="chapterList" item="chapter">
             <tr>
                 <td>{$chapter.num}</td>
@@ -19,5 +21,7 @@
             </tr>
         </foreach>
     </table>
+</div>
+
 </body>
 </html>
