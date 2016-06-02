@@ -28,8 +28,10 @@ class VideoController extends Controller{
     }
 
     public function playVideo(){
+        $startTime = I("startTime");
         $video = VideoService::getVideo(I("videoId"));
         $this->assign("video", $video);
+        $this->assign("startTime", $startTime);
         $this->display();
     }
 

@@ -12,5 +12,20 @@
         <source src="{$video.ogg_url}" type="video/ogg">
     </video>
 </div>
+
+
+<script type="text/javascript">
+    (function(){
+        startTime = '{$startTime}';
+        alert(startTime);
+        if( startTime ){
+            video = document.getElementById("video");
+            video.play();
+            video.currentTime = begTime;
+        }
+
+    })();
+
+</script>
 </body>
 </html>

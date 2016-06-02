@@ -36,8 +36,8 @@
                 <div><a href="{:U('/Admin/Login')}">后台管理系统</a></div>
             </if>
 
-            <form action="{:U('')}" method="post">
-                <input name="keyWords"/><input type="submit" value="有问题,搜一搜"/>
+            <form action="{:U('Home/Index/search')}" method="post">
+                <input name="keyWords" placeholder="请输入单个词语"/><input type="submit" value="有问题,搜一搜" />
             </form>
 
         </div>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查找结果</title>
+</head>
+<body>
+<div class="container">
+    <h3 class="pull-right">"{$keyWords}"搜索结果</h3>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#">视频</a></li>
+        <li role="presentation"><a href="#">文集</a></li>
+    </ul>
+    <div class="list-group" id="video_result">
+        <foreach name="result" item="r">
+            <a href="{:U('Video/playVideo', array( 'videoId' => $r['video_id'], 'startTime'=> $r['start_time']))}" class="list-group-item">
+                <h4 class="list-group-item-heading">{$r.title}&nbsp;&nbsp;&nbsp;&nbsp;<small>{$r.minSec}</small></h4>
+                <p class="list-group-item-text">{$r.content}</p>
+            </a>
+        </foreach>
+    </div>
+    <div class="list-group" id="book_result">
+        <foreach name="result" item="r">
+            <a href="#" class="list-group-item">
+            </a>
+        </foreach>
+    </div>
+
+</div>
+</body>
+</html>
