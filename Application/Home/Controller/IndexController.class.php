@@ -12,8 +12,10 @@ class IndexController extends Controller {
 
     public function search(){
         $keyWords = I("keyWords");
-        $result = SearchService::searchVideo($keyWords);
-        $this->assign("result", $result);
+        $videoResult = SearchService::searchVideo($keyWords);
+        $bookResult = SearchService::searchBook($keyWords);
+        $this->assign("bookResult", $bookResult);
+        $this->assign("videoResult", $videoResult);
         $this->assign("keyWords", $keyWords);
         $this->display();
     }
