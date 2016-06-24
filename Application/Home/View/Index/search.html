@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查找结果</title>
+    <style>
+        .hide{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 class="pull-right">"{$keyWords}"的搜索结果</h3>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" id="book_tab" class="active"><a href="#" onclick="toBook()">文集</a></li>
+        <li role="presentation" id="video_tab"><a href="#" onclick="toVideo()">视频</a></li>
+    </ul>
+    <div class="list-group" id="book_result">
+        <foreach name="bookResult" item="r">
+            <a href="{:U('Book/readSearchChapter', array( 'num' => $r['num'], 'bookId'=> $r['book_id'], 'keyWords'=>$keyWords ))}" class="list-group-item">
+                <h4 class="list-group-item-heading">{$r.chapter_title}&nbsp;&nbsp;&nbsp;&nbsp;<small>{$r.book_name}</small></h4>
+                <p class="list-group-item-text">{$r.content}</p>
+            </a>
+        </foreach>
+    </div>
+    <div class="list-group hide" id="video_result">
+        <foreach name="videoResult" item="r">
+            <a href="{:U('Video/playVideo', array( 'videoId' => $r['video_id'], 'startTime'=> $r['start_time']))}" class="list-group-item">
+                <h4 class="list-group-item-heading">{$r.title}&nbsp;&nbsp;&nbsp;&nbsp;<small>{$r.minSec}</small></h4>
+                <p class="list-group-item-text">{$r.content}</p>
+            </a>
+        </foreach>
+    </div>
+</div>
+<script src="__PUBLIC__/lib/zepto.min.js"></script>
+<script type="text/javascript">
+    function toVideo(){
+        $("#book_result").addClass("hide");
+        $("#video_result").removeClass("hide");
+        $("#video_tab").addClass("active");
+        $("#book_tab").removeClass("active");
+    }
+
+    function toBook(){
+        $("#book_result").removeClass("hide");
+        $("#video_result").addClass("hide");
+        $("#video_tab").removeClass("active");
+        $("#book_tab").addClass("active");
+    }
+</script>
+
+</body>
+</html>

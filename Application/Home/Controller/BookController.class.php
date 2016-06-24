@@ -45,6 +45,21 @@ class BookController extends Controller{
         $this->display();
     }
 
-
+    public function readSearchChapter(){
+        layout(false);
+        $num = I("num");
+        $bookId = I("bookId");
+        $keyWords = I("keyWords");
+        $chapter = BookService::getChapter($bookId, $num);
+        $chapter['content'] = html_entity_decode($chapter['content']);
+        $chapter['content'] = str_replace($keyWords, "<strong style=\"color:red\">$keyWords</strong>", $chapter['content']);
+        $maxChapterNum = BookService::getMaxChapterNum($bookId);
+        $chapterIndex = BookService::getChapterIndex($bookId);
+        $this->assign("chapterIndex", $chapterIndex);
+        $this->assign("bookId", $bookId);
+        $this->assign("maxChapterNum",$maxChapterNum);
+        $this->assign("chapter", $chapter);
+        $this->display("readChapter");
+    }
 
 }

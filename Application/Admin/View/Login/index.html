@@ -3,23 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>用户登陆</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
 </head>
 <body>
-    <form action="{:U('Login/loginHandler')}" method="post">
-        <table>
-            <tr><td>印心精舍后台管理系统</td></tr>
-            <tr>
-                <td>用户名：</td>
-                <td><input type="text" name="username"/></td>
-            </tr>
-            <tr>
-                <td>密码：</td>
-                <td><input type="password" name="password" /></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="登录"/></td>
-            </tr>
-        </table>
-    </form>
+<div class="container">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 lead">
+        <br/>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title lead">管理员登录</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{:U('Login/loginHandler')}" method="post" class="form-horizontal" >
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">账号</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="昵称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div>
+                            <input type="submit" class="btn btn-danger" value="登录" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
+
 </body>
 </html>

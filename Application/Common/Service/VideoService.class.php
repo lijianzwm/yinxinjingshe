@@ -59,4 +59,18 @@ class VideoService{
         return $video;
     }
 
+    /**
+     * 通过视频集编号来获取视频集名称,如果不存在,返回null
+     * @param $setId
+     * @return null
+     */
+    public static function getVideoSetName($setId){
+        $videoSet = M("video_set_list")->where("set_id='$setId'")->find();
+        if( $videoSet ){
+            return $videoSet['name'];
+        }else{
+            return null;
+        }
+    }
+
 }
